@@ -1,0 +1,33 @@
+/* Fullscreen Preloader Styling */
+.preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #111; /* Dark background for the preloader */
+  z-index: 9999; /* Ensures preloader is on top */
+}
+
+#preloader-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+  grid-template-rows: repeat(auto-fill, minmax(50px, 1fr));
+  width: 100vw;
+  height: 100vh;
+  gap: 2px;
+}
+
+.preloader-tile {
+  background-color: #00bfae; /* Teal color for tiles */
+  opacity: 0;
+  transform: translateY(-50px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.preloader-tile:hover {
+  opacity: 0.8;
+}
