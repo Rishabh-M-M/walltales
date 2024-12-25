@@ -1,6 +1,6 @@
 // ui/hero-highlight.jsx
-import { motion, useMotionValue, useMotionTemplate } from 'framer-motion';
-import React from 'react';
+import { motion, useMotionValue, useMotionTemplate } from "framer-motion";
+import React from "react";
 
 export const HeroHighlight = ({ children, className, containerClassName }) => {
   let mouseX = useMotionValue(0);

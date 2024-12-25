@@ -15,7 +15,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useOutsideClick } from "@/hooks/use-outside-click";
 
 export const CarouselContext = createContext({
-  onCardClose: () => { },
+  onCardClose: () => {},
   currentIndex: 0,
 });
 
@@ -81,7 +81,7 @@ export const Carousel = ({ items, initialScroll = 0 }) => {
         >
           <div
             className={cn(
-              "absolute right-0  z-[1000] h-auto  w-[5%] overflow-hidden bg-gradient-to-l"
+              "absolute right-0  z-[1000] h-auto  w-[5%] overflow-hidden bg-gradient-to-l",
             )}
           ></div>
 
@@ -89,7 +89,7 @@ export const Carousel = ({ items, initialScroll = 0 }) => {
             className={cn(
               "flex flex-row justify-start gap-4 pl-4",
               // remove max-w-4xl if you want the carousel to span the full width of its container
-              "max-w-7xl mx-auto"
+              "max-w-7xl mx-auto",
             )}
           >
             {items.map((item, index) => (

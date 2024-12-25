@@ -10,7 +10,7 @@ export const InfiniteMovingCards = ({
   direction = "left",
   speed = "fast",
   pauseOnHover = true,
-  className
+  className,
 }) => {
   const containerRef = React.useRef(null);
   const scrollerRef = React.useRef(null);
@@ -42,7 +42,7 @@ export const InfiniteMovingCards = ({
     if (containerRef.current) {
       containerRef.current.style.setProperty(
         "--animation-direction",
-        direction === "left" ? "forwards" : "reverse"
+        direction === "left" ? "forwards" : "reverse",
       );
     }
   };
@@ -60,7 +60,7 @@ export const InfiniteMovingCards = ({
       ref={containerRef}
       className={cn(
         "scroller relative z-20 max-w-7xl overflow-hidden [mask-image:linear-gradient(to_right,transparent,white_20%,white_80%,transparent)]",
-        className
+        className,
       )}
     >
       <ul
@@ -68,7 +68,7 @@ export const InfiniteMovingCards = ({
         className={cn(
           "flex min-w-full shrink-0 gap-4 py-4 w-max flex-nowrap",
           start && "animate-scroll",
-          pauseOnHover && "hover:[animation-play-state:paused]"
+          pauseOnHover && "hover:[animation-play-state:paused]",
         )}
       >
         {items.map((item, idx) => (
@@ -99,13 +99,16 @@ export const InfiniteMovingCards = ({
               </div>
               {/* Star Rating */}
               <div className="relative z-20 mt-4 flex flex-row items-center space-x-1">
-                {[...Array(5)].map((_, starIdx) => (
+                {[...Array(5)].map((_, starIdx) =>
                   starIdx < item.rating ? (
                     <FaStar key={starIdx} className="text-yellow-400 text-sm" />
                   ) : (
-                    <FaRegStar key={starIdx} className="text-gray-300 text-sm" />
-                  )
-                ))}
+                    <FaRegStar
+                      key={starIdx}
+                      className="text-gray-300 text-sm"
+                    />
+                  ),
+                )}
               </div>
             </blockquote>
           </li>

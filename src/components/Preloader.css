@@ -25,7 +25,9 @@
   background-color: #00bfae; /* Teal color for tiles */
   opacity: 0;
   transform: translateY(-50px);
-  transition: opacity 0.5s ease, transform 0.5s ease;
+  transition:
+    opacity 0.5s ease,
+    transform 0.5s ease;
 }
 
 .preloader-tile:hover {
