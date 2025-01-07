@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import logo from "./assets/logo.png";
-import { Search } from "./Search.jsx";
 
 const MENU_ITEMS = [
   { name: "Home", path: "./home" },
@@ -28,9 +27,8 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed w-full z-50 transition-all ${
-        isScrolled ? "py-0" : "py-3"
-      } bg-white shadow-md dark:bg-gray-900`}
+      className={`fixed w-full z-50 transition-all ${isScrolled ? "py-0" : "py-3"
+        } bg-white shadow-md dark:bg-gray-900`}
     >
       <div className="max-w-screen-xl flex items-center justify-between mx-auto p-3">
         {/* Logo */}
@@ -44,11 +42,10 @@ const Navbar = () => {
             <li key={item.name}>
               <Link
                 to={item.path}
-                className={`block py-2 px-3 rounded ${
-                  location.pathname === item.path
+                className={`block py-2 px-3 rounded ${location.pathname === item.path
                     ? "text-teal-700"
                     : "text-gray-700 hover:text-teal-700 dark:text-white"
-                }`}
+                  }`}
               >
                 {item.name}
               </Link>
@@ -59,7 +56,7 @@ const Navbar = () => {
         {/* Search Bar */}
 
         <div className="relative hidden custom-md:block">
-          <Search />
+          <button></button>
         </div>
 
         {/* Hamburger Button */}
@@ -106,9 +103,8 @@ const Navbar = () => {
 
         {/* Dropdown Menu */}
         <div
-          className={`${
-            isMenuOpen ? "block" : "hidden"
-          } absolute top-16 right-4 w-56 bg-white border border-gray-200 rounded-lg shadow-lg custom-md:hidden dark:bg-gray-800 dark:border-gray-700 transition-opacity`}
+          className={`${isMenuOpen ? "block" : "hidden"
+            } absolute top-16 right-4 w-56 bg-white border border-gray-200 rounded-lg shadow-lg custom-md:hidden dark:bg-gray-800 dark:border-gray-700 transition-opacity`}
         >
           <ul className="flex flex-col p-4 space-y-2">
             {MENU_ITEMS.map((item) => (

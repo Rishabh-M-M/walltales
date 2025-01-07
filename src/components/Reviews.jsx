@@ -6,11 +6,13 @@ export function InfiniteMovingCardsDemo() {
   return (
     <div className="h-[30rem] rounded-md flex flex-col antialiased bg-teal-700 dark:bg-teal-900 items-center justify-center relative overflow-hidden py-8">
       {/* Header Section */}
-      <div className="text-center mb-8">
+      <div className="text-center mb-8 px-4 sm:px-8">
         <h2 className="text-3xl font-bold text-white">
           What Our Customers Say
         </h2>
-        <p className="text-teal-200">Discover why people love our products!</p>
+        <p className="text-teal-200 text-sm sm:text-base">
+          Discover why people love our products!
+        </p>
       </div>
 
       {/* Infinite Moving Cards */}
@@ -82,8 +84,8 @@ function StarRating({ rating }) {
 // Update the InfiniteMovingCards component to include the StarRating feature:
 InfiniteMovingCards.defaultProps = {
   renderCard: ({ quote, name, title, rating }) => (
-    <div className="p-1 bg-teal-800 border border-teal-900 rounded-md shadow-md">
-      <p className="text-white text-sm mb-2">"{quote}"</p>
+    <div className="p-4 bg-teal-700 border border-teal-900 rounded-md shadow-md sm:w-64 w-full">
+      <p className="text-white text-sm sm:text-base mb-2">"{quote}"</p>
       <div className="mt-4">
         <StarRating rating={rating} />
       </div>

@@ -1,5 +1,3 @@
-"use client";
-
 import { cn } from "@/lib/utils";
 import React, { useEffect, useState } from "react";
 import { AiOutlineUser } from "react-icons/ai";
@@ -73,7 +71,7 @@ export const InfiniteMovingCards = ({
       >
         {items.map((item, idx) => (
           <li
-            className="w-[350px] max-w-full relative rounded-2xl border border-teal-700 flex-shrink-0 bg-white px-8 py-6 md:w-[450px]"
+            className="w-[280px] max-w-full relative rounded-2xl border border-teal-700 flex-shrink-0 bg-white px-4 py-4 md:w-[350px] lg:w-[450px]"
             key={idx}
           >
             <blockquote>

@@ -1,44 +1,44 @@
 import React from "react";
 import { Carousel, Card } from "@/components/ui/apple-cards-carousel";
 import Catalogue from "./assets/location.png";
+import { Link } from "react-router-dom";
 
 export function AppleCardsCarouselDemo() {
   const data = [
     {
-      category: "Capital City",
-      title: "Delhi",
+      title: "Peel and Stick Tiles",
       src: Catalogue,
-      content: <p>Our flagship store in Delhi.</p>,
+      content: <p>Stunning.</p>,
     },
     {
-      category: "Financial Hub",
-      title: "Mumbai",
+      title: "Wall Tile Stickers",
       src: Catalogue,
-      content: <p>Experience the best at our Mumbai store.</p>,
+      content: <p>Experience the best.</p>,
     },
     {
-      category: "Tech City",
-      title: "Bengaluru",
+      title: "Floor Tile Stickers",
       src: Catalogue,
-      content: <p>Visit us in the heart of Bengaluru.</p>,
+      content: <p>Woah!!!</p>,
     },
     {
-      category: "Cultural Center",
-      title: "Kolkata",
+      title: "Mosaic Tiles",
       src: Catalogue,
-      content: <p>Find us in the vibrant city of Kolkata.</p>,
+      content: <p>The vibrance is unmatched.</p>,
     },
     {
-      category: "Pink City",
-      title: "Jaipur",
+      title: "Accent Wall",
       src: Catalogue,
-      content: <p>Step into our store in Jaipur.</p>,
+      content: <p>Step into our store.</p>,
     },
     {
-      category: "Himalayan Escape",
-      title: "Leh",
+      title: "Decore Plate",
       src: Catalogue,
-      content: <p>Explore our Leh location.</p>,
+      content: <p>Explore this.</p>,
+    },
+    {
+      title: "Wallpapers",
+      src: Catalogue,
+      content: <p>Cool Product here.</p>,
     },
   ];
 
@@ -47,10 +47,20 @@ export function AppleCardsCarouselDemo() {
   ));
 
   return (
-    <div className="w-full h-full py-4">
-      <h2 className="text-xl px-2 md:text-4xl lg:text-4xl font-bold text-neutral-900 dark:text-white max-w-4xl text-center mx-auto py-2">
-        Explore Our Locations
-      </h2>
+    <div className="w-full h-full pt-4">
+      <div className="text-center">
+        <h2 className="text-xl px-2 md:text-4xl lg:text-4xl font-bold text-neutral-900 dark:text-white max-w-4xl text-center mx-auto pt-12 pb-4">
+          Our Categories
+        </h2>
+        <div className="text-center">
+          <Link
+            to="/gallery"
+            className="text-teal-600 hover:text-teal-900 font-semibold text-lg transition duration-200 mx-auto py-2"
+          >
+            Browse our Collection &rarr;
+          </Link>
+        </div>
+      </div>
       <Carousel items={cards} />
     </div>
   );
