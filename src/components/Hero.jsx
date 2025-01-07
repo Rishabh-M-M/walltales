@@ -1,12 +1,11 @@
 import { motion } from "framer-motion";
 import React from "react";
 import { ImagesSlider } from "./ui/images-slider.jsx";
-import image3 from "./assets/catalogue/WallTales_Dealer Catlogue_compressed (2)_page-0001.jpg";
-import image2 from "./assets/slide2.jpeg";
-import image1 from "./assets/slide1.jpeg";
+import image2 from "../assets/slide2.jpeg";
+import image1 from "../assets/slide1.jpeg";
 import { Quote } from "lucide-react";
 export function Hero() {
-  const images = [image1, image2, image3];
+  const images = [image1, image2];
   return (
     <ImagesSlider className="h-[100vh]" images={images}>
       <motion.div

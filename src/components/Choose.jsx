@@ -84,8 +84,8 @@ const WhyChooseUs = () => {
               At Walltales, we are committed to providing top-quality products
               that offer both style and durability. We believe that everyone
               should have access to affordable and easy DIY solutions, and our
-              peel and stick tiles are just one example of our commitment to that
-              mission.
+              peel and stick tiles are just one example of our commitment to
+              that mission.
             </p>
           </motion.div>
 
@@ -115,7 +115,9 @@ const WhyChooseUs = () => {
                   </div>
                 </div>
                 <div>
-                  <h3 className="font-semibold text-md md:text-lg text-white">{feature.title}</h3>
+                  <h3 className="font-semibold text-md md:text-lg text-white">
+                    {feature.title}
+                  </h3>
                 </div>
               </motion.div>
             ))}

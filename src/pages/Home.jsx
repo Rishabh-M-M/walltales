@@ -1,10 +1,9 @@
 import React from "react";
 import { useState } from "react";
 import { Hero } from "../components/Hero";
-import { FocusCardsDemo } from "../components/Catalogue";
 import WhyChooseUs from "../components/Choose";
 import { InfiniteMovingCardsDemo } from "../components/Reviews";
-import { AppleCardsCarouselDemo } from "../components/Locations";
+import { AppleCardsCarouselDemo } from "../components/Categories";
 function Home() {
   const [count, setCount] = useState(0);
 

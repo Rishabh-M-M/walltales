@@ -9,7 +9,6 @@ const Gallery = () => {
         Showcase
       </h2>
       <ParallaxScrollDemo />
-      <CompareDemo />
     </main>
   );
 };

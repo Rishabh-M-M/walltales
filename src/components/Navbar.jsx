@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import logo from "./assets/logo.png";
+import logo from "../assets/logo.png";
 import { FaPhone } from "react-icons/fa";
 
 const MENU_ITEMS = [
@@ -55,7 +55,10 @@ const Navbar = () => {
 
         {/* Get a Call Button */}
         <div className="relative hidden custom-md:block">
-          <Link to="/Contact" className="relative inline-flex h-12 overflow-hidden rounded-full p-[3px] focus:outline-none focus:ring-2 focus:ring-teal-400 focus:ring-offset-2 focus:ring-offset-teal-50">
+          <Link
+            to="/Contact"
+            className="relative inline-flex h-12 overflow-hidden rounded-full p-[3px] focus:outline-none focus:ring-2 focus:ring-teal-400 focus:ring-offset-2 focus:ring-offset-teal-50"
+          >
             <span className="absolute inset-[-1000%] animate-[spin_5s_linear_infinite] hover:animate-none bg-[conic-gradient(from_90deg_at_50%_50%,#A0F4F1_0%,#0ca899_50%,#A0F4F1_100%)]" />
             <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-white px-8 py-1 text-md font-medium text-teal-600 backdrop-blur-3xl hover:text-teal-800">
               <FaPhone className="mr-4 text-md -rotate-12" /> {/* Phone icon */}
