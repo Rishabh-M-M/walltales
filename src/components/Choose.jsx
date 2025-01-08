@@ -59,7 +59,7 @@ const WhyChooseUs = () => {
   }, []);
 
   return (
-    <div className="px-4 text-center py-8 bg-teal-600 text-white">
+    <div className="px-4 text-center py-8 pb-12 bg-teal-600 text-white">
       <div className="mx-auto max-w-7xl">
         <div className="space-y-8">
           {/* Header Section */}
