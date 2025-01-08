@@ -1,6 +1,5 @@
 import React from "react";
 import { ParallaxScrollDemo } from "../components/Showcase";
-import { CompareDemo } from "../components/Change";
 
 const Gallery = () => {
   return (
