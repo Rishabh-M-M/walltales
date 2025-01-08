@@ -1,8 +1,18 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useScroll, useTransform } from "framer-motion";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { IconX } from "@tabler/icons-react";
+
+// Fisher-Yates Shuffle Algorithm
+const shuffleArray = (array) => {
+  let shuffledArray = [...array];
+  for (let i = shuffledArray.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];
+  }
+  return shuffledArray;
+};
 
 export const ParallaxScroll = ({ images, className }) => {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -11,16 +21,18 @@ export const ParallaxScroll = ({ images, className }) => {
     container: typeof window !== "undefined" ? document.body : null, // Use main page scroll
   });
 
+  const shuffledImages = shuffleArray(images); // Shuffle images
+
   // Increase the parallax speed by using larger ranges for translation
   const translateFirst = useTransform(scrollYProgress, [0, 1], [0, -400]); // Increase range
   const translateSecond = useTransform(scrollYProgress, [0, 1], [0, 400]); // Increase range
   const translateThird = useTransform(scrollYProgress, [0, 1], [0, -400]); // Increase range
 
-  const third = Math.ceil(images.length / 3);
+  const third = Math.ceil(shuffledImages.length / 3);
 
-  const firstPart = images.slice(0, third);
-  const secondPart = images.slice(third, 2 * third);
-  const thirdPart = images.slice(2 * third);
+  const firstPart = shuffledImages.slice(0, third);
+  const secondPart = shuffledImages.slice(third, 2 * third);
+  const thirdPart = shuffledImages.slice(2 * third);
 
   const handleImageClick = (image) => {
     setSelectedImage(image);
@@ -39,7 +51,7 @@ export const ParallaxScroll = ({ images, className }) => {
       ref={containerRef}
     >
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-8xl gap-10 px-10 mb-56">
-        <div className="grid gap-10">
+        <div className="grid gap-10 grid-auto-rows">
           {firstPart.map((el, idx) => (
             <motion.div style={{ y: translateFirst }} key={"grid-1" + idx}>
               <img
@@ -51,7 +63,7 @@ export const ParallaxScroll = ({ images, className }) => {
             </motion.div>
           ))}
         </div>
-        <div className="grid gap-10">
+        <div className="grid gap-10 grid-auto-rows">
           {secondPart.map((el, idx) => (
             <motion.div style={{ y: translateSecond }} key={"grid-2" + idx}>
               <img
@@ -63,7 +75,7 @@ export const ParallaxScroll = ({ images, className }) => {
             </motion.div>
           ))}
         </div>
-        <div className="grid gap-10">
+        <div className="grid gap-10 grid-auto-rows">
           {thirdPart.map((el, idx) => (
             <motion.div style={{ y: translateThird }} key={"grid-3" + idx}>
               <img
