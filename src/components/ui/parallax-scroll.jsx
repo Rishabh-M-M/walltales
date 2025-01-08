@@ -2,6 +2,7 @@ import { useState, useRef } from "react";
 import { useScroll, useTransform } from "framer-motion";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { IconX } from "@tabler/icons-react";
 
 export const ParallaxScroll = ({ images, className }) => {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -10,9 +11,10 @@ export const ParallaxScroll = ({ images, className }) => {
     container: typeof window !== "undefined" ? document.body : null, // Use main page scroll
   });
 
-  const translateFirst = useTransform(scrollYProgress, [0, 1], [0, -200]);
-  const translateSecond = useTransform(scrollYProgress, [0, 1], [0, 200]);
-  const translateThird = useTransform(scrollYProgress, [0, 1], [0, -200]);
+  // Increase the parallax speed by using larger ranges for translation
+  const translateFirst = useTransform(scrollYProgress, [0, 1], [0, -400]); // Increase range
+  const translateSecond = useTransform(scrollYProgress, [0, 1], [0, 400]); // Increase range
+  const translateThird = useTransform(scrollYProgress, [0, 1], [0, -400]); // Increase range
 
   const third = Math.ceil(images.length / 3);
 
@@ -83,7 +85,7 @@ export const ParallaxScroll = ({ images, className }) => {
         >
           {/* Prevent closing when clicking inside the modal content */}
           <motion.div
-            className="bg-white p-4 rounded-lg max-w-4xl w-full max-h-full overflow-hidden"
+            className="bg-white p-8 rounded-xl max-w-4xl w-full max-h-full overflow-hidden"
             onClick={(e) => e.stopPropagation()} // Stop propagation to avoid closing
           >
             <img
@@ -92,10 +94,10 @@ export const ParallaxScroll = ({ images, className }) => {
               alt="full-image"
             />
             <button
-              className="absolute top-4 right-4 text-white bg-black rounded-full p-2"
+              className="absolute text-sm top-4 right-4 text-white bg-black rounded-full p-2"
               onClick={closeModal}
             >
-              ✕
+              <IconX />
             </button>
           </motion.div>
         </div>
