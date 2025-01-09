@@ -17,7 +17,7 @@ export function GlobeDemo() {
         directionalLeftLight: "#93C5FD", // Softer complementary light
         directionalTopLight: "#BFDBFE", // Brighter light for highlights
         pointLight: "#BFDBFE", // Bright point light
-        arcTime: 2500,
+        arcTime: 1000,
         arcLength: 0.7,
         rings: 1,
         maxRings: 3,
@@ -75,10 +75,10 @@ export function GlobeDemo() {
                         Our interactive globe showcases our worldwide connections. Dive in and discover the extent of our reach.
                     </p>
                 </motion.div>
-                <div className="absolute w-full bottom-0 inset-x-0 h-40 bg-gradient-to-b pointer-events-none select-none from-transparent dark:to-black to-white z-40" />
+                <div className="absolute w-full bottom-0 inset-x-0 h-40 bg-gradient-to-b pointer-events-none select-none from-transparent dark:to-black to-[rgba] z-40" />
                 <div
                     className="absolute flex items-center justify-center w-full h-full my-28"
-                    style={{ height: "600px", width: "1000px" }} // Larger globe
+                    style={{ maxHeight: "600px", maxWidth: "1000px", minHeight: "300px", minWidth: "500px" }} // Larger globe
                 >
                     <Suspense fallback={<div className="text-black">Loading globe...</div>}>
                         <World globeConfig={globeConfig} data={sampleArcs} />
