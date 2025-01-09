@@ -1,7 +1,9 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import { Canvas } from "@react-three/fiber";
+import { OrbitControls } from "@react-three/drei";
 import ThreeGlobe from "three-globe";
-import { Color } from "three";
-import countries from "@/data/globe.json"; // Ensure this path matches your project structure
+import { Scene, Fog, Color, PerspectiveCamera, Vector3 } from "three";
+import countries from "@/data/globe.json";
 
 function Globe({ globeConfig = {}, data = [] }) {
   const globeRef = useRef(null);
@@ -52,4 +54,61 @@ function Globe({ globeConfig = {}, data = [] }) {
   return <primitive object={new ThreeGlobe()} ref={globeRef} />;
 }
 
-export default Globe;
+export function World({ globeConfig, data }) {
+  const [dimensions, setDimensions] = useState({ width: 1000, height: 1000 });
+
+  const containerRef = useRef();
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (containerRef.current) {
+        const { clientWidth } = containerRef.current;
+        setDimensions({
+          width: clientWidth * 0.99, // Adjust width relative to container
+          height: clientWidth * 0.99, // Maintain aspect ratio
+        });
+      }
+    };
+
+    handleResize(); // Initial calculation
+    window.addEventListener("resize", handleResize); // Recalculate on window resize
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const scene = new Scene();
+  scene.fog = new Fog(0x000000, 400, 2000);
+
+  return (
+    <div
+      ref={containerRef}
+      className="flex justify-center items-center w-full h-full"
+      style={{ height: "100vh" }}
+    >
+      <Canvas
+        camera={{
+          fov: 50,
+          aspect: 1,
+          near: 180,
+          far: 1800,
+          position: [0, 0, 500],
+        }}
+        style={{
+          width: dimensions.width,
+          height: dimensions.height,
+        }}
+      >
+        <ambientLight intensity={0.6} color={globeConfig.ambientLight || "#34D399"} />
+        <directionalLight position={[-400, 100, 400]} color={globeConfig.directionalLeftLight || "#A7F3D0"} />
+        <directionalLight position={[-200, 500, 200]} color={globeConfig.directionalTopLight || "#A7F3D0"} />
+        <pointLight position={[-200, 500, 200]} intensity={0.8} color={globeConfig.pointLight || "#A7F3D0"} />
+        <Globe globeConfig={globeConfig} data={data} />
+        <OrbitControls
+          enablePan={false}
+          enableZoom={false}
+          autoRotate
+          autoRotateSpeed={0.5}
+        />
+      </Canvas>
+    </div>
+  );
+}
