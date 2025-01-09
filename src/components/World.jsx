@@ -9,7 +9,7 @@ export function GlobeDemo() {
         showAtmosphere: true,
         atmosphereColor: "#666666", // Bright blue for atmosphere
         atmosphereAltitude: 0.15,
-        emissive: "", // Subtle dark for emissive glow
+        emissive: "#222222", // Subtle dark for emissive glow
         emissiveIntensity: 0.4,
         shininess: 1, // Slightly shinier globe
         polygonColor: "rgba(00,255, 00,1)", // Soft white polygons
@@ -78,7 +78,7 @@ export function GlobeDemo() {
                 <div className="absolute w-full bottom-0 inset-x-0 h-40 bg-gradient-to-b pointer-events-none select-none from-transparent dark:to-black to-white z-40" />
                 <div
                     className="absolute flex items-center justify-center w-full h-full my-28"
-                    style={{ height: "600px", width: "600px" }} // Larger globe
+                    style={{ height: "600px", width: "1000px" }} // Larger globe
                 >
                     <Suspense fallback={<div className="text-black">Loading globe...</div>}>
                         <World globeConfig={globeConfig} data={sampleArcs} />

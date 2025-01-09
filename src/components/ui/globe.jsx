@@ -25,7 +25,7 @@ function Globe({ globeConfig = {}, data = [] }) {
       .showAtmosphere(globeConfig.showAtmosphere)
       .atmosphereColor(globeConfig.atmosphereColor || "#34D399") // Light green atmosphere
       .atmosphereAltitude(globeConfig.atmosphereAltitude || 0.1)
-      .hexPolygonColor(() => globeConfig.polygonColor || "rgba(255,255,255,0.5)");
+      .hexPolygonColor(() => globeConfig.polygonColor || "rgba(255,255,255,1");
 
     globeRef.current
       .arcsData(data)
@@ -51,14 +51,19 @@ export function World({ globeConfig, data }) {
         far: 1800,
         position: [0, 0, 500], // Fixed camera position
       }}
-      style={{ width: "500px", height: "500px" }} // Fixed size
+      style={{ width: "1000px", height: "1000px" }} // Fixed size
     >
       <ambientLight intensity={0.6} color={globeConfig.ambientLight || "#34D399"} />
       <directionalLight position={[-400, 100, 400]} color={globeConfig.directionalLeftLight || "#A7F3D0"} />
       <directionalLight position={[-200, 500, 200]} color={globeConfig.directionalTopLight || "#A7F3D0"} />
       <pointLight position={[-200, 500, 200]} intensity={0.8} color={globeConfig.pointLight || "#A7F3D0"} />
       <Globe globeConfig={globeConfig} data={data} />
-      <OrbitControls enablePan={false} autoRotate autoRotateSpeed={0.5} />
+      <OrbitControls
+        enablePan={false}
+        enableZoom={false} // Disable zoom functionality
+        autoRotate
+        autoRotateSpeed={0.5}
+      />
     </Canvas>
   );
 }
