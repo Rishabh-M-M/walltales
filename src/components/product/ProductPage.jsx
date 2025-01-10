@@ -52,9 +52,8 @@ const ProductPage = () => {
   const SelectedCategoryComponent = selectedCategoryData?.component;
 
   return (
-    <div className="w-full h-screen flex flex-col">
+    <div className="w-full min-h-screen flex flex-col">
       <AnimatePresence>
-        {/* Show category cards when no category is selected */}
         {selectedCategory === null ? (
           <motion.div
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 p-8"
@@ -68,7 +67,7 @@ const ProductPage = () => {
                 className="cursor-pointer rounded-md shadow-md overflow-hidden relative group"
                 whileHover={{ scale: 1.05 }}
                 onClick={() => handleCardClick(category.name)}
-                layoutId={category.name} // Add layoutId for shared transition
+                layoutId={category.name}
               >
                 <img
                   src={category.image}
@@ -83,17 +82,16 @@ const ProductPage = () => {
           </motion.div>
         ) : (
           <motion.div
-            className="flex flex-col h-full"
+            className="flex flex-col flex-1"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
-            {/* Transitioned Banner */}
             {selectedCategoryData && (
               <motion.div
-                className="relative w-full overflow-hidden"
-                style={{ height: "100vw" }}
-                layoutId={selectedCategoryData.name} // Match layoutId for shared transition
+                className="relative w-full"
+                style={{ aspectRatio: '16/9' }} // Aspect ratio for the banner
+                layoutId={selectedCategoryData.name}
               >
                 <img
                   src={selectedCategoryData.image}
@@ -102,13 +100,11 @@ const ProductPage = () => {
                 />
               </motion.div>
             )}
-
-            {/* Tabs for categories */}
             <div className="flex justify-center items-center space-x-4 p-4 bg-gray-100 shadow-sm">
               {categories.map((category) => (
                 <button
                   key={category.name}
-                  className={`py-2 px-4 rounded-md flex items-center justify-center space-x-2 ${category.name === selectedCategory
+                  className={`py-2 px-4 rounded-md flex items-center justify-center ${category.name === selectedCategory
                     ? "bg-teal-700 text-white rounded-xl"
                     : "bg-white text-teal-700 border border-teal-700 rounded-xl"
                     }`}
@@ -124,15 +120,14 @@ const ProductPage = () => {
                 <FiX size={20} />
               </button>
             </div>
-
-            {/* Selected Category Component */}
-            <div className="p-8 flex-1 overflow-y-none">
+            <div className="p-8 flex-1 overflow-y-auto">
               {SelectedCategoryComponent && <SelectedCategoryComponent />}
             </div>
           </motion.div>
         )}
       </AnimatePresence>
     </div>
+
   );
 };
 
