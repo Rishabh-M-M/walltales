@@ -1,9 +1,9 @@
 import React from "react";
-import { AnimatedTestimonialsDemo } from "../components/Team";
-import { TimelineDemo } from "../components/History";
+import { AnimatedTestimonialsDemo } from "../components/about/Team";
+import { TimelineDemo } from "../components/about/History";
 import { HeroHighlightDemo } from "../components/Quote";
-import Features from "../components/Features";
-import MotivationAndVision from "../components/Vision";
+import Features from "../components/about/Features";
+import MotivationAndVision from "../components/about/Vision";
 
 const About = () => {
   return (

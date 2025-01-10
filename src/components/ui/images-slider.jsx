@@ -15,16 +15,17 @@ export const ImagesSlider = ({
   const [currentIndex, setCurrentIndex] = useState(0);
   const [loading, setLoading] = useState(false);
   const [loadedImages, setLoadedImages] = useState([]);
+  const [aspectRatio, setAspectRatio] = useState(1); // To store the aspect ratio of the first image
 
   const handleNext = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex + 1 === images.length ? 0 : prevIndex + 1,
+      prevIndex + 1 === images.length ? 0 : prevIndex + 1
     );
   };
 
   const handlePrevious = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex - 1 < 0 ? images.length - 1 : prevIndex - 1,
+      prevIndex - 1 < 0 ? images.length - 1 : prevIndex - 1
     );
   };
 
@@ -38,18 +39,23 @@ export const ImagesSlider = ({
       return new Promise((resolve, reject) => {
         const img = new Image();
         img.src = image;
-        img.onload = () => resolve(image);
+        img.onload = () => resolve(img);
         img.onerror = reject;
       });
     });
 
     Promise.all(loadPromises)
       .then((loadedImages) => {
-        setLoadedImages(loadedImages);
+        setLoadedImages(loadedImages.map((img) => img.src));
+        const firstImage = loadedImages[0];
+        if (firstImage) {
+          setAspectRatio(firstImage.naturalWidth / firstImage.naturalHeight); // Calculate aspect ratio
+        }
         setLoading(false);
       })
       .catch((error) => console.error("Failed to load images", error));
   };
+
   useEffect(() => {
     const handleKeyDown = (event) => {
       if (event.key === "ArrowRight") {
@@ -108,15 +114,18 @@ export const ImagesSlider = ({
 
   const areImagesLoaded = loadedImages.length > 0;
 
+  const containerStyles = {
+    width: "99vw", // Full window width
+    height: `calc(99vw / ${aspectRatio})`, // Height adjusted based on aspect ratio
+  };
+
   return (
     <div
       className={cn(
-        "overflow-hidden h-full w-full relative flex items-center justify-center",
-        className,
+        "relative flex items-center justify-start overflow-hidden",
+        className
       )}
-      style={{
-        perspective: "1000px",
-      }}
+      style={containerStyles} // Dynamic sizing
     >
       {areImagesLoaded && children}
       {areImagesLoaded && overlay && (
@@ -131,7 +140,7 @@ export const ImagesSlider = ({
             animate="visible"
             exit={direction === "up" ? "upExit" : "downExit"}
             variants={slideVariants}
-            className="image h-full w-full absolute inset-0 object-cover object-center"
+            className="image absolute inset-0 object-contain" // Maintain aspect ratio
           />
         </AnimatePresence>
       )}

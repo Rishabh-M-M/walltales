@@ -1,10 +1,10 @@
 import React from "react";
 import { useState } from "react";
-import { Hero } from "../components/Hero";
-import WhyChooseUs from "../components/Choose";
-import { InfiniteMovingCardsDemo } from "../components/Reviews";
-import { AppleCardsCarouselDemo } from "../components/Categories";
-import { GlobeDemo } from "../components/World";
+import { Hero } from "../components/home/Hero";
+import WhyChooseUs from "../components/home/Choose";
+import { InfiniteMovingCardsDemo } from "../components/home/Reviews";
+import { AppleCardsCarouselDemo } from "../components/home/Categories";
+import { GlobeDemo } from "../components/home/World";
 function Home() {
   const [count, setCount] = useState(0);
 

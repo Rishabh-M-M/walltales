@@ -1,13 +1,11 @@
 import React from "react";
-import ProductsPage from "../components/ProductPage";
-import { HeroHighlightDemo } from "../components/Quote";
+import ProductPage from "../components/product/ProductPage";
 
 const Products = () => {
   return (
     <>
       <main className="pt-24">
-        <HeroHighlightDemo />
-        <ProductsPage />
+        <ProductPage />
       </main>
     </>
   );

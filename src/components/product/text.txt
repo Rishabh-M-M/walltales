@@ -1,0 +1,554 @@
+import React, { useState } from "react";
+import { IconX, IconChevronLeft, IconChevronRight } from "@tabler/icons-react";
+
+const ProductsPage = () => {
+    const categories = [
+        "Peel and Stick Tiles",
+        "Wall Tile Stickers",
+        "Floor Tile Stickers",
+        "Mosaic Tiles",
+        "Accent Wall",
+        "Decore Plate",
+        "Wallpapers",
+    ];
+
+    const products = [
+        // Peel and Stick Tiles
+        {
+            id: 1,
+            category: "Peel and Stick Tiles",
+            name: "Classic Peel Tile",
+            price: 25,
+            popularity: 4,
+            color: "Blue",
+            description: "Durable peel-and-stick tile for easy installation.",
+            images: ["image1.jpg", "image2.jpg", "image3.jpg"],
+        },
+        {
+            id: 2,
+            category: "Peel and Stick Tiles",
+            name: "Modern Peel Tile",
+            price: 30,
+            popularity: 5,
+            color: "Green",
+            description: "Sleek design with high adhesive quality.",
+            images: ["image4.jpg", "image5.jpg"],
+        },
+        {
+            id: 3,
+            category: "Peel and Stick Tiles",
+            name: "Textured Peel Tile",
+            price: 28,
+            popularity: 4,
+            color: "Gray",
+            description: "Textured design for a more natural feel.",
+            images: ["image6.jpg", "image7.jpg"],
+        },
+        {
+            id: 4,
+            category: "Peel and Stick Tiles",
+            name: "Marble Peel Tile",
+            price: 35,
+            popularity: 5,
+            color: "White",
+            description: "Elegant marble design for a sophisticated look.",
+            images: ["image8.jpg", "image9.jpg"],
+        },
+        {
+            id: 5,
+            category: "Peel and Stick Tiles",
+            name: "Wooden Peel Tile",
+            price: 40,
+            popularity: 3,
+            color: "Brown",
+            description: "Wooden look tiles with easy installation.",
+            images: ["image10.jpg", "image11.jpg"],
+        },
+        {
+            id: 6,
+            category: "Peel and Stick Tiles",
+            name: "Ceramic Peel Tile",
+            price: 38,
+            popularity: 4,
+            color: "Beige",
+            description: "Ceramic effect peel-and-stick tiles.",
+            images: ["image12.jpg", "image13.jpg"],
+        },
+        {
+            id: 7,
+            category: "Peel and Stick Tiles",
+            name: "Glossy Peel Tile",
+            price: 30,
+            popularity: 5,
+            color: "Red",
+            description: "Glossy finish peel-and-stick tiles.",
+            images: ["image14.jpg", "image15.jpg"],
+        },
+
+        // Wall Tile Stickers
+        {
+            id: 8,
+            category: "Wall Tile Stickers",
+            name: "Modern Tile Stickers",
+            price: 15,
+            popularity: 5,
+            color: "Green",
+            description: "Stylish and modern peel-and-stick tile stickers.",
+            images: ["image4.jpg", "image5.jpg"],
+        },
+        {
+            id: 9,
+            category: "Wall Tile Stickers",
+            name: "Vintage Tile Stickers",
+            price: 18,
+            popularity: 4,
+            color: "Red",
+            description: "Vintage pattern stickers for wall decoration.",
+            images: ["image16.jpg", "image17.jpg"],
+        },
+        {
+            id: 10,
+            category: "Wall Tile Stickers",
+            name: "Geometric Tile Stickers",
+            price: 22,
+            popularity: 4,
+            color: "Blue",
+            description: "Modern geometric designs to liven up your walls.",
+            images: ["image18.jpg", "image19.jpg"],
+        },
+        {
+            id: 11,
+            category: "Wall Tile Stickers",
+            name: "Nature Tile Stickers",
+            price: 20,
+            popularity: 5,
+            color: "Yellow",
+            description: "Nature-inspired tile stickers for your walls.",
+            images: ["image20.jpg", "image21.jpg"],
+        },
+        {
+            id: 12,
+            category: "Wall Tile Stickers",
+            name: "Abstract Tile Stickers",
+            price: 17,
+            popularity: 3,
+            color: "Purple",
+            description: "Abstract design stickers to add flair to your walls.",
+            images: ["image22.jpg", "image23.jpg"],
+        },
+
+        // Wallpapers
+        {
+            id: 13,
+            category: "Wallpapers",
+            name: "Floral Wallpaper",
+            price: 30,
+            popularity: 5,
+            color: "Yellow",
+            description: "Elegant floral patterns.",
+            images: ["image6.jpg", "image7.jpg", "image8.jpg"],
+        },
+        {
+            id: 14,
+            category: "Wallpapers",
+            name: "Striped Wallpaper",
+            price: 28,
+            popularity: 4,
+            color: "Blue",
+            description: "Stylish striped wallpaper for modern interiors.",
+            images: ["image24.jpg", "image25.jpg"],
+        },
+        {
+            id: 15,
+            category: "Wallpapers",
+            name: "Abstract Wallpaper",
+            price: 32,
+            popularity: 4,
+            color: "Purple",
+            description: "Bold abstract patterns for a contemporary look.",
+            images: ["image26.jpg", "image27.jpg"],
+        },
+        {
+            id: 16,
+            category: "Wallpapers",
+            name: "Nature Wallpaper",
+            price: 35,
+            popularity: 5,
+            color: "Green",
+            description: "Beautiful nature-inspired wallpaper for calm spaces.",
+            images: ["image28.jpg", "image29.jpg"],
+        },
+        {
+            id: 17,
+            category: "Wallpapers",
+            name: "Geometric Wallpaper",
+            price: 27,
+            popularity: 4,
+            color: "Gray",
+            description: "Geometric patterns for a stylish, minimalistic look.",
+            images: ["image30.jpg", "image31.jpg"],
+        },
+        {
+            id: 18,
+            category: "Wallpapers",
+            name: "Brick Wallpaper",
+            price: 38,
+            popularity: 4,
+            color: "Brown",
+            description: "Brick-style wallpaper for an industrial look.",
+            images: ["image32.jpg", "image33.jpg"],
+        },
+        {
+            id: 26,
+            category: "Floor Tile Stickers",
+            name: "Classic Floor Tile",
+            price: 22,
+            popularity: 5,
+            color: "Beige",
+            description: "Classic floor tile stickers with easy installation.",
+            images: ["image46.jpg", "image47.jpg"],
+        },
+        {
+            id: 27,
+            category: "Floor Tile Stickers",
+            name: "Geometric Floor Tile",
+            price: 26,
+            popularity: 4,
+            color: "Black",
+            description: "Geometric floor tiles with a modern flair.",
+            images: ["image48.jpg", "image49.jpg"],
+        },
+        {
+            id: 28,
+            category: "Floor Tile Stickers",
+            name: "Textured Floor Tile",
+            price: 30,
+            popularity: 5,
+            color: "Gray",
+            description: "Textured tiles for a more realistic appearance.",
+            images: ["image50.jpg", "image51.jpg"],
+        },
+
+        // Decore Plate
+        {
+            id: 29,
+            category: "Decore Plate",
+            name: "Classic Decore Plate",
+            price: 18,
+            popularity: 4,
+            color: "White",
+            description: "Elegant decore plate to enhance your home decor.",
+            images: ["image52.jpg", "image53.jpg"],
+        },
+        {
+            id: 30,
+            category: "Decore Plate",
+            name: "Modern Decore Plate",
+            price: 20,
+            popularity: 5,
+            color: "Blue",
+            description: "Sleek design decore plate for contemporary settings.",
+            images: ["image54.jpg", "image55.jpg"],
+        },
+        {
+            id: 31,
+            category: "Decore Plate",
+            name: "Rustic Decore Plate",
+            price: 22,
+            popularity: 3,
+            color: "Brown",
+            description: "Rustic plate design for vintage-inspired spaces.",
+            images: ["image56.jpg", "image57.jpg"],
+        },
+
+        // Accent Wall
+        {
+            id: 32,
+            category: "Accent Wall",
+            name: "Wood Accent Wall",
+            price: 60,
+            popularity: 5,
+            color: "Brown",
+            description: "Natural wood accent wall to add warmth to any room.",
+            images: ["image58.jpg", "image59.jpg"],
+        },
+        {
+            id: 33,
+            category: "Accent Wall",
+            name: "Geometric Accent Wall",
+            price: 65,
+            popularity: 5,
+            color: "Gray",
+            description: "Bold geometric accent wall for modern homes.",
+            images: ["image60.jpg", "image61.jpg"],
+        },
+        {
+            id: 34,
+            category: "Accent Wall",
+            name: "Brick Accent Wall",
+            price: 75,
+            popularity: 4,
+            color: "Red",
+            description: "Rustic brick accent wall for an industrial look.",
+            images: ["image62.jpg", "image63.jpg"],
+        },
+
+        // Mosaic Tiles
+        {
+            id: 19,
+            category: "Mosaic Tiles",
+            name: "Elegant Mosaic",
+            price: 40,
+            popularity: 5,
+            color: "White",
+            description: "Beautiful and durable mosaic tiles for decoration.",
+            images: ["image9.jpg", "image10.jpg"],
+        },
+        {
+            id: 20,
+            category: "Mosaic Tiles",
+            name: "Gold Mosaic",
+            price: 45,
+            popularity: 5,
+            color: "Gold",
+            description: "Luxurious gold mosaic tiles for upscale design.",
+            images: ["image34.jpg", "image35.jpg"],
+        },
+        {
+            id: 21,
+            category: "Mosaic Tiles",
+            name: "Blue Mosaic",
+            price: 38,
+            popularity: 4,
+            color: "Blue",
+            description: "Vibrant blue mosaic tiles for a bold look.",
+            images: ["image36.jpg", "image37.jpg"],
+        },
+        {
+            id: 22,
+            category: "Mosaic Tiles",
+            name: "Marble Mosaic",
+            price: 50,
+            popularity: 5,
+            color: "White",
+            description: "Sophisticated marble mosaic tiles for luxurious spaces.",
+            images: ["image38.jpg", "image39.jpg"],
+        },
+        {
+            id: 23,
+            category: "Mosaic Tiles",
+            name: "Vintage Mosaic",
+            price: 42,
+            popularity: 4,
+            color: "Brown",
+            description: "Vintage-inspired mosaic tiles for classic charm.",
+            images: ["image40.jpg", "image41.jpg"],
+        },
+        {
+            id: 24,
+            category: "Mosaic Tiles",
+            name: "Copper Mosaic",
+            price: 48,
+            popularity: 5,
+            color: "Copper",
+            description: "Copper-colored mosaic tiles for an industrial touch.",
+            images: ["image42.jpg", "image43.jpg"],
+        },
+        {
+            id: 25,
+            category: "Mosaic Tiles",
+            name: "Silver Mosaic",
+            price: 40,
+            popularity: 4,
+            color: "Silver",
+            description: "Silver mosaic tiles for a sleek, modern aesthetic.",
+            images: ["image44.jpg", "image45.jpg"],
+        },
+    ];
+
+    const [selectedCategory, setSelectedCategory] = useState(categories[0]);
+    const [selectedProduct, setSelectedProduct] = useState(null);
+    const [carouselIndex, setCarouselIndex] = useState(0);
+
+    const [filters, setFilters] = useState({
+        color: "",
+        price: "all",
+        popularity: "all",
+    });
+
+    const filteredProducts = products.filter((product) => {
+        return (
+            product.category === selectedCategory &&
+            (filters.color === "" || product.color === filters.color) &&
+            (filters.price === "all" ||
+                (filters.price === "low" ? product.price <= 20 : product.price > 20)) &&
+            (filters.popularity === "all" ||
+                product.popularity === Number(filters.popularity))
+        );
+    });
+
+    const handleNextImage = () => {
+        setCarouselIndex((prevIndex) =>
+            selectedProduct.images
+                ? (prevIndex + 1) % selectedProduct.images.length
+                : prevIndex
+        );
+    };
+
+    const handlePrevImage = () => {
+        setCarouselIndex((prevIndex) =>
+            selectedProduct.images
+                ? (prevIndex - 1 + selectedProduct.images.length) %
+                selectedProduct.images.length
+                : prevIndex
+        );
+    };
+
+    return (
+        <div className= "p-6" >
+        <h2 className="text-xl w-full px-2 md:text-4xl lg:text-4xl font-bold text-neutral-900 bg-white text-center mx-auto py-12" >
+            Our Products
+                </h2>
+
+    {/* Categories */ }
+    <div className="flex justify-center gap-4 mb-6 flex-wrap" >
+    {
+        categories.map((category) => (
+            <button
+            key= { category }
+            className = {`py-2 px-4 rounded ${selectedCategory === category
+                ? "bg-teal-600 text-white"
+                : "bg-gray-200 text-gray-700 hover:bg-teal-200"
+                }`}
+    onClick = {() => setSelectedCategory(category)}
+          >
+    { category }
+    </button>
+        ))}
+</div>
+
+{/* Filters */ }
+<div className="mb-6" >
+    <h3 className="text-lg font-bold mb-2" > Filters </h3>
+        < div className = "flex gap-4" >
+            <select
+            className="border px-3 py-2 rounded"
+onChange = {(e) => setFilters({ ...filters, color: e.target.value })}
+          >
+    <option value="" > Color </option>
+        < option value = "Blue" > Blue </option>
+            < option value = "Green" > Green </option>
+                < option value = "Yellow" > Yellow </option>
+                    < option value = "White" > White </option>
+                        < option value = "Gray" > Gray </option>
+                            < option value = "Brown" > Brown </option>
+                                < option value = "Purple" > Purple </option>
+                                    < option value = "Red" > Red </option>
+                                        < option value = "Gold" > Gold </option>
+                                            < option value = "Copper" > Copper </option>
+                                                < option value = "Silver" > Silver </option>
+                                                    </select>
+                                                    < select
+className = "border px-3 py-2 rounded"
+onChange = {(e) => setFilters({ ...filters, price: e.target.value })}
+          >
+    <option value="all" > Price </option>
+        < option value = "low" > Under $20 </option>
+            < option value = "high" > Over $20 </option>
+                </select>
+                < select
+className = "border px-3 py-2 rounded"
+onChange = {(e) =>
+setFilters({ ...filters, popularity: e.target.value })
+            }
+          >
+    <option value="all" > Popularity </option>
+        < option value = "5" > 5 Stars </option>
+            < option value = "4" > 4 Stars </option>
+                </select>
+                </div>
+                </div>
+
+{/* Product Listings */ }
+<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" >
+{
+    filteredProducts.map((product) => (
+        <div key= { product.id } className = "border rounded-lg p-4 shadow" >
+        <img
+              src={ product.images[0] }
+              alt = { product.name }
+              className = "h-40 w-full object-cover rounded mb-4"
+        />
+        <h3 className="text-xl font-bold mb-2" > { product.name } </h3>
+    < p className = "text-gray-500" > { product.description } </p>
+    < p className = "text-teal-600 font-bold mt-2" > ${ product.price } </p>
+    < button
+              className = "mt-4 w-full py-2 bg-teal-600 text-white rounded"
+              onClick = {() => {
+        setSelectedProduct(product);
+                setCarouselIndex(0);
+    }}
+    >
+    View Details
+        </button>
+        </div>
+        ))}
+</div>
+
+{/* Modal for Product Details */ }
+{
+    selectedProduct && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center z-50"
+    onClick = {() => setSelectedProduct(null)
+}
+        >
+    <div
+            className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md relative"
+onClick = {(e) => e.stopPropagation()}
+          >
+    {/* Close Button */ }
+    < button
+className = "absolute top-4 right-4 text-gray-500 hover:text-gray-800"
+onClick = {() => setSelectedProduct(null)}
+            >
+    <IconX />
+    </button>
+
+{/* Image Carousel */ }
+<div className="flex items-center justify-center mb-4 relative" >
+    <button
+                className="absolute left-2 text-gray-500 hover:text-gray-800"
+onClick = { handlePrevImage }
+    >
+    <IconChevronLeft size={ 24 } />
+        </button>
+        < img
+src = { selectedProduct.images[carouselIndex] }
+alt = { selectedProduct.name }
+className = "h-40 w-full object-cover rounded"
+    />
+    <button
+                className="absolute right-2 text-gray-500 hover:text-gray-800"
+onClick = { handleNextImage }
+    >
+    <IconChevronRight size={ 24 } />
+        </button>
+        </div>
+
+{/* Product Details */ }
+<h3 className="text-2xl font-bold mb-2" > { selectedProduct.name } </h3>
+    < p className = "text-gray-500 mb-2" > { selectedProduct.description } </p>
+        < p className = "text-teal-600 font-bold" > ${ selectedProduct.price } </p>
+            < p className = "text-gray-500" > Color: { selectedProduct.color } </p>
+                < p className = "text-gray-500" >
+                    Popularity: { selectedProduct.popularity } Stars
+                        </p>
+                        </div>
+                        </div>
+      )}
+</div>
+  );
+};
+
+export default ProductsPage;

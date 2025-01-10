@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import ThreeGlobe from "three-globe";
-import { Scene, Fog, Color, PerspectiveCamera, Vector3 } from "three";
+import { Scene, Fog, Color } from "three";
 import countries from "@/data/globe.json";
 
 function Globe({ globeConfig = {}, data = [] }) {
@@ -26,7 +26,7 @@ function Globe({ globeConfig = {}, data = [] }) {
       .showAtmosphere(globeConfig.showAtmosphere)
       .atmosphereColor(globeConfig.atmosphereColor || "#666666")
       .atmosphereAltitude(globeConfig.atmosphereAltitude || 0.15)
-      .hexPolygonColor(() => globeConfig.polygonColor || "rgba(255,255,255,0.5)");
+      .hexPolygonColor(() => globeConfig.polygonColor || "rgba(255,255,255,1)");
 
     // Set up arcs
     globeRef.current
@@ -86,7 +86,7 @@ export function World({ globeConfig, data }) {
     >
       <Canvas
         camera={{
-          fov: 50,
+          fov: 45,
           aspect: 1,
           near: 180,
           far: 1800,
@@ -98,8 +98,8 @@ export function World({ globeConfig, data }) {
         }}
       >
         <ambientLight intensity={0.6} color={globeConfig.ambientLight || "#34D399"} />
-        <directionalLight position={[-400, 100, 400]} color={globeConfig.directionalLeftLight || "#A7F3D0"} />
-        <directionalLight position={[-200, 500, 200]} color={globeConfig.directionalTopLight || "#A7F3D0"} />
+        <directionalLight position={[400, 100, 400]} color={globeConfig.directionalLeftLight || "#A7F3D0"} />
+        <directionalLight position={[200, 500, 200]} color={globeConfig.directionalTopLight || "#A7F3D0"} />
         <pointLight position={[-200, 500, 200]} intensity={0.8} color={globeConfig.pointLight || "#A7F3D0"} />
         <Globe globeConfig={globeConfig} data={data} />
         <OrbitControls
