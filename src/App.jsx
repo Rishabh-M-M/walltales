@@ -1,45 +1,34 @@
-import { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import "./App.css";
 import Navbar from "./components/Navbar";
-// Navbar pages:
-import Home from "./pages/Home.jsx";
-import About from "./pages/About.jsx";
-import Nopage from "./pages/Nopage.jsx";
-import Products from "./pages/Products.jsx";
-import Gallery from "./pages/Gallery.jsx";
-import Blog from "./pages/Blog.jsx";
-import Testimonials from "./pages/Testimonials.jsx";
-import Contact from "./pages/Contact.jsx";
-import FAQ from "./pages/FAQ.jsx";
-import Footer from "./components/Footer.jsx";
-import Preloader from "./components/Preloader.jsx";
+import Footer from "./components/Footer";
+import "./App.css";
+
+// Pages
+import Home from "./pages/Home";
+import About from "./pages/About";
+import Products from "./pages/Products";
+import Gallery from "./pages/Gallery";
+import Blog from "./pages/Blog";
+import Testimonials from "./pages/Testimonials";
+import Contact from "./pages/Contact";
+import FAQ from "./pages/FAQ";
+import Nopage from "./pages/Nopage";
 
 function App() {
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    // Simulating page load or resource fetching
-    setTimeout(() => {
-      setLoading(false); // Hide preloader after 2 seconds
-    }, 2000);
-  }, []);
-
   return (
     <BrowserRouter>
-      {loading ? <Preloader /> : null} {/* Display preloader while loading */}
       <Navbar />
       <Routes>
         <Route index element={<Home />} />
-        <Route path="/walltales/" element={<Home />} />
-        <Route path="/home" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/products" element={<Products />} />
-        <Route path="/gallery" element={<Gallery />} />
-        <Route path="/blog" element={<Blog />} />
-        <Route path="/testimonials" element={<Testimonials />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/FAQ" element={<FAQ />} />
+        <Route path="walltales/home" element={<Home />} />
+        <Route path="walltales/" element={<Home />} />
+        <Route path="walltales/about" element={<About />} />
+        <Route path="walltales/products" element={<Products />} />
+        <Route path="walltales/gallery" element={<Gallery />} />
+        <Route path="walltales/blog" element={<Blog />} />
+        <Route path="walltales/testimonials" element={<Testimonials />} />
+        <Route path="walltales/contact" element={<Contact />} />
+        <Route path="walltales/FAQ" element={<FAQ />} />
         <Route path="*" element={<Nopage />} />
       </Routes>
       <Footer />

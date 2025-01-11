@@ -22,3 +22,12 @@
   background: teal;
   border-radius: 10px;
 }
+
+/* Smooth transition for navbar height and logo positioning */
+nav {
+  transition: height 3s;
+}
+
+nav img {
+  transition: height 1s, transform 4s;
+}
