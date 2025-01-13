@@ -115,7 +115,7 @@ const Navbar = () => {
 
       <div
         className={`fixed top-0 left-0 h-full bg-white shadow-lg z-40 transition-transform duration-500 ${isMenuOpen ? "translate-x-0" : "-translate-x-full"
-          } w-screen md:w-1/5`}
+          } w-screen md:w-1/3 lg:w-1/5`}
       >
         <ul className="flex flex-col space-y-8 p-6 mt-12 items-center md:items-baseline">
           {MENU_ITEMS.map((item) => (
@@ -123,8 +123,8 @@ const Navbar = () => {
               <button
                 onClick={() => handleLinkClick(item.path)}
                 className={`flex items-center py-3 px-4 text-lg text-center font-semibold rounded md:text-left uppercase ${location.pathname === item.path
-                  ? "text-teal-700 underline underline-offset-4"
-                  : "text-gray-700 hover:text-teal-700"
+                  ? "text-teal-700 underline underline-offset-4 tracking-wide"
+                  : "text-gray-700 hover:text-teal-700 hover:tracking-widest duration-500"
                   }`}
               >
                 <span className="mr-3 text-2xl">{item.icon}</span>

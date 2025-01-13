@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import {
   FaGlobe,
   FaInfinity,
-  FaRegThumbsUp,
+  FaThumbsUp,
+  FaTools,
 } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -13,15 +14,19 @@ const WhyChooseUs = () => {
   const features = [
     {
       icon: <FaGlobe />,
-      title: "Global Reach",
+      title: "      Global Reach           ",
     },
     {
       icon: <FaInfinity />,
-      title: "Endless Possibilities",
+      title: "   Endless Possibilities   ",
     },
     {
-      icon: <FaRegThumbsUp />,
-      title: "Unparalleled Quality",
+      icon: <FaThumbsUp />,
+      title: " Unparalleled Quality ",
+    },
+    {
+      icon: <FaTools />,
+      title: " Effortless Installation",
     },
   ];
 
@@ -66,12 +71,13 @@ const WhyChooseUs = () => {
               </Link>
             </div>
             <p className="text-white text-sm md:text-lg text-justify">
-              Walltales is a leading provider of innovative and exquisite wall decor solutions. We are passionate about transforming spaces into personalized reflections of individual style and creativity. With a global presence and a loyal customer base spanning the globe, we offer a diverse range of products, from innovative peel-and-stick tiles, captivating accent walls to and exquisite mosaic and elegant wallpapers creations. At Walltales, we believe that exceptional design should be accessible to everyone. We prioritize quality craftsmanship, utilizing premium materials and employing cutting-edge techniques to ensure lasting beauty and performance.</p>
+              Walltales is a leading provider of innovative and exquisite wall decor solutions. We are passionate about transforming spaces into personalized reflections of individual style and creativity. With a global presence and a loyal customer base spanning the globe, we offer a diverse range of products, from innovative peel-and-stick tiles, captivating accent walls to and exquisite mosaic and elegant wallpapers creations. At Walltales, we believe that exceptional design should be accessible to everyone. We prioritize quality craftsmanship, utilizing premium materials and employing cutting-edge techniques to ensure lasting beauty and performance.
+            </p>
           </motion.div>
 
           {/* Features Grid with Scroll Animation */}
           <motion.div
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-10"
             initial={{ opacity: 0 }}
             animate={{ opacity: inView ? 1 : 0 }}
             transition={{ delay: 0.3, duration: 0.6 }}
@@ -79,7 +85,7 @@ const WhyChooseUs = () => {
             {features.map((feature, index) => (
               <motion.div
                 key={index}
-                className="flex items-center justify-center space-x-4"
+                className="flex items-center justify-center space-x-4 mx-auto"
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: inView ? 1 : 0, scale: inView ? 1 : 0.8 }}
                 transition={{
@@ -89,15 +95,17 @@ const WhyChooseUs = () => {
                   stiffness: 80,
                 }}
               >
-                <div className="flex-shrink-0">
-                  <div className="w-12 h-12 bg-teal-800 rounded-full flex items-center justify-center text-white">
-                    <span className="text-xl">{feature.icon}</span>
+                <div className="flex justify-center">
+                  <div className="w-16 h-16 bg-teal-800 rounded-full flex items-center justify-center text-white">
+                    <span className="text-2xl">{feature.icon}</span>
                   </div>
                 </div>
-                <div>
-                  <h3 className="font-semibold text-md md:text-lg text-white">
-                    {feature.title}
-                  </h3>
+                <div className="text-center">
+                  <pre>
+                    <h3 className="font-semibold text-md md:text-lg text-white">
+                      {feature.title}
+                    </h3>
+                  </pre>
                 </div>
               </motion.div>
             ))}
