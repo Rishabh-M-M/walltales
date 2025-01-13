@@ -1,149 +1,174 @@
 import React, { useState } from 'react';
 
 const ContactForm = () => {
-    const [formData, setFormData] = useState({
-        name: '',
-        email: '',
-        message: ''
-    });
-    const [isSubmitted, setIsSubmitted] = useState(false);
-    const [activeInputs, setActiveInputs] = useState({
-        name: false,
-        email: false,
-        message: false
-    });
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: ''
+  });
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [activeInputs, setActiveInputs] = useState({
+    name: false,
+    email: false,
+    message: false
+  });
 
-    const handleInputFocus = (field) => {
-        setActiveInputs(prev => ({
-            ...prev,
-            [field]: true
-        }));
+  const handleInputFocus = (field) => {
+    setActiveInputs(prev => ({
+      ...prev,
+      [field]: true
+    }));
+  };
+
+  const handleInputBlur = (field) => {
+    if (!formData[field]) {
+      setActiveInputs(prev => ({
+        ...prev,
+        [field]: false
+      }));
+    }
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const [submissionError, setSubmissionError] = useState(null);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitted(false);
+    setSubmissionError(null);
+
+    const submissionData = {
+      ...formData,
+      access_key: "fd4ade92-74b9-4e9f-9ac6-4e4b598cab96",
+      subject: "Contact Form Submission",
     };
 
-    const handleInputBlur = (field) => {
-        if (!formData[field]) {
-            setActiveInputs(prev => ({
-                ...prev,
-                [field]: false
-            }));
-        }
-    };
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(submissionData),
+      });
 
-    const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setFormData(prev => ({
-            ...prev,
-            [name]: value
-        }));
-    };
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
+      if (response.ok) {
         setIsSubmitted(true);
-        // Add your form submission logic here
-    };
+        setFormData({ name: '', email: '', message: '' });
+      } else {
+        const errorData = await response.json();
+        setSubmissionError(errorData.message || 'Submission failed');
+      }
+    } catch (error) {
+      setSubmissionError('Network error occurred. Please try again.');
+    }
+  };
 
-    return (
-        <div className="min-h-screen bg-teal-600 flex items-center justify-center p-4">
-            <div className="bg-white rounded-lg shadow-xl w-full max-w-4xl grid grid-cols-1 md:grid-cols-2">
-                {/* Title */}
-                <h1 className="col-span-full text-3xl font-bold p-7 text-black rounded-t-lg border-b">
-                    Contact Details:
-                </h1>
 
-                {/* Form Section */}
-                <form onSubmit={handleSubmit} className="p-7 space-y-6">
-                    {/* Name Input */}
-                    <div className="relative">
-                        <input
-                            type="text"
-                            name="name"
-                            value={formData.name}
-                            onChange={handleInputChange}
-                            onFocus={() => handleInputFocus('name')}
-                            onBlur={() => handleInputBlur('name')}
-                            className="w-full border-b-2 border-gray-300 py-2 focus:outline-none focus:border-teal-500 transition-colors bg-transparent"
-                            required
-                        />
-                        <label className={`absolute left-0 transition-all duration-300 pointer-events-none 
+
+  return (
+    <div className="min-h-screen bg-teal-600 flex items-center justify-center p-4">
+      <div className="bg-white rounded-lg shadow-xl w-full max-w-4xl grid grid-cols-1 md:grid-cols-2">
+        {/* Title */}
+        <h1 className="col-span-full text-3xl font-bold p-7 text-black rounded-t-lg border-b">
+          Contact Details:
+        </h1>
+
+        {/* Form Section */}
+        <form onSubmit={handleSubmit} action="https://api.web3forms.com/submit" method="POST" className="p-7 space-y-6">
+          <input type="hidden" name="access_key" value="fd4ade92-74b9-4e9f-9ac6-4e4b598cab96" />
+          <input type="hidden" name="subject" value="Contact Form Submission" />
+          <input type="hidden" name="redirect" value="/walltales/" />
+
+          {/* Name Input */}
+          <div className="relative">
+            <input
+              type="text"
+              name="name"
+              value={formData.name}
+              onChange={handleInputChange}
+              onFocus={() => handleInputFocus('name')}
+              onBlur={() => handleInputBlur('name')}
+              className="w-full border-b-2 border-gray-300 py-2 focus:outline-none focus:border-teal-500 transition-colors bg-transparent"
+              required
+            />
+            <label className={`absolute left-0 transition-all duration-300 pointer-events-none 
               ${activeInputs.name || formData.name ? 'text-xs -top-4 text-teal-500' : 'top-2 text-gray-500'}`}>
-                            Full name
-                        </label>
-                    </div>
+              Full name
+            </label>
+          </div>
 
-                    {/* Email Input */}
-                    <div className="relative">
-                        <input
-                            type="email"
-                            name="email"
-                            value={formData.email}
-                            onChange={handleInputChange}
-                            onFocus={() => handleInputFocus('email')}
-                            onBlur={() => handleInputBlur('email')}
-                            className="w-full border-b-2 border-gray-300 py-2 focus:outline-none focus:border-teal-500 transition-colors bg-transparent"
-                            required
-                        />
-                        <label className={`absolute left-0 transition-all duration-300 pointer-events-none 
+          {/* Email Input */}
+          <div className="relative">
+            <input
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleInputChange}
+              onFocus={() => handleInputFocus('email')}
+              onBlur={() => handleInputBlur('email')}
+              className="w-full border-b-2 border-gray-300 py-2 focus:outline-none focus:border-teal-500 transition-colors bg-transparent"
+              required
+            />
+            <label className={`absolute left-0 transition-all duration-300 pointer-events-none 
               ${activeInputs.email || formData.email ? 'text-xs -top-4 text-teal-500' : 'top-2 text-gray-500'}`}>
-                            Email address
-                        </label>
-                    </div>
+              Email address
+            </label>
+          </div>
 
-                    {/* Message Input */}
-                    <div className="relative">
-                        <input
-                            type="text"
-                            name="message"
-                            value={formData.message}
-                            onChange={handleInputChange}
-                            onFocus={() => handleInputFocus('message')}
-                            onBlur={() => handleInputBlur('message')}
-                            className="w-full border-b-2 border-gray-300 py-2 focus:outline-none focus:border-teal-500 transition-colors bg-transparent"
-                            required
-                        />
-                        <label className={`absolute left-0 transition-all duration-300 pointer-events-none 
+          {/* Message Input */}
+          <div className="relative">
+            <input
+              type="text"
+              name="message"
+              value={formData.message}
+              onChange={handleInputChange}
+              onFocus={() => handleInputFocus('message')}
+              onBlur={() => handleInputBlur('message')}
+              className="w-full border-b-2 border-gray-300 py-2 focus:outline-none focus:border-teal-500 transition-colors bg-transparent"
+              required
+            />
+            <label className={`absolute left-0 transition-all duration-300 pointer-events-none 
               ${activeInputs.message || formData.message ? 'text-xs -top-4 text-teal-500' : 'top-2 text-gray-500'}`}>
-                            Your message
-                        </label>
-                    </div>
+              Your message
+            </label>
+          </div>
 
-                    {/* Submit Button */}
-                    <button
-                        type="submit"
-                        className="w-full bg-teal-500 text-white py-3 rounded-md shadow-md hover:bg-teal-600 transition-colors relative overflow-hidden"
-                    >
-                        <span className={`flex items-center justify-center transition-transform duration-300 
-              ${isSubmitted ? 'transform translate-y-full' : ''}`}>
-                            Submit
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
-                                <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
-                            </svg>
-                        </span>
-                        <span className={`absolute inset-0 flex items-center justify-center transition-transform duration-300 
-              ${isSubmitted ? 'transform translate-y-0' : 'transform translate-y-full'}`}>
-                            Message sent!
-                        </span>
-                    </button>
-                </form>
+          {/* Submit Button */}
+          <button
+            type="submit"
+            className="w-full bg-teal-500 text-white py-3 rounded-md shadow-md hover:bg-teal-600 transition-colors"
+          >
+            Submit
+          </button>
+          {isSubmitted && <p className="text-green-500">Your message was sent successfully!</p>}
+          {submissionError && <p className="text-red-500">{submissionError}</p>}
+        </form>
 
-                {/* Mail Icon Section */}
-                <div className="hidden md:flex items-center justify-center p-7">
-                    <div className="container-mail">
-                        <div className={`mail ${isSubmitted ? 'active' : ''}`}>
-                            <div className="mail__back"></div>
-                            <div className={`mail__top ${isSubmitted ? 'closed' : ''}`}></div>
-                            <div className={`mail__letter ${isSubmitted ? 'move' : ''}`}>
-                                <div className="mail__letter-square"></div>
-                                <div className="mail__letter-lines"></div>
-                            </div>
-                            <div className="mail__left"></div>
-                            <div className="mail__right"></div>
-                            <div className="mail__bottom"></div>
-                        </div>
-                    </div>
-                </div>
+        {/* Mail Icon Section */}
+        <div className="hidden md:flex items-center justify-center p-7">
+          <div className="container-mail">
+            <div className={`mail ${isSubmitted ? 'active' : ''}`}>
+              <div className="mail__back"></div>
+              <div className={`mail__top ${isSubmitted ? 'closed' : ''}`}></div>
+              <div className={`mail__letter ${isSubmitted ? 'move' : ''}`}>
+                <div className="mail__letter-square"></div>
+                <div className="mail__letter-lines"></div>
+              </div>
+              <div className="mail__left"></div>
+              <div className="mail__right"></div>
+              <div className="mail__bottom"></div>
+            </div>
+          </div>
+        </div>
 
-                <style jsx>{`
+        <style jsx>{`
 .container-mail {
   display: flex;
   justify-content: center;
@@ -277,9 +302,9 @@ const ContactForm = () => {
 
 
         `}</style>
-            </div>
-        </div>
-    );
+      </div>
+    </div>
+  );
 };
 
 export default ContactForm;

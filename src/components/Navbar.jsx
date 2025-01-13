@@ -79,37 +79,8 @@ const Navbar = () => {
           onClick={() => setIsMenuOpen((prev) => !prev)}
           className="inline-flex items-center p-2 w-10 h-10 text-sm text-gray-500 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
         >
-          {isMenuOpen ? (
-            <svg
-              className="w-6 h-6"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M6 18L18 6M6 6l12 12"
-              />
-            </svg>
-          ) : (
-            <svg
-              className="w-6 h-6"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4 6h16M4 12h16m-7 6h7"
-              />
-            </svg>
-          )}
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M4 18H10" stroke="#000000" stroke-width="2" stroke-linecap="round"></path> <path d="M4 12L16 12" stroke="#000000" stroke-width="2" stroke-linecap="round"></path> <path d="M4 6L20 6" stroke="#000000" stroke-width="2" stroke-linecap="round"></path> </g></svg>
+
         </button>
       )}
 
@@ -168,12 +139,12 @@ const Navbar = () => {
       </div>
 
       <div className="flex-1 flex justify-center absolute left-1/2 transform -translate-x-1/2">
-        <img
+        <Link to={"/walltales/home"}><img
           src={logo}
           alt="Walltales Logo"
           className={`transition-all duration-[1000ms] ${isTransitioning ? "h-24" : "h-10"
             }`}
-        />
+        /></Link>
       </div>
 
 
@@ -181,7 +152,7 @@ const Navbar = () => {
       {!isTransitioning && !reappearingDelay && (
         <div className="hidden md:flex absolute right-10 top-4">
           <Link
-            to="/Contact"
+            to="/walltales/Contact"
             className="relative inline-flex h-12 overflow-hidden rounded-full p-[3px] focus:outline-none focus:ring-2 focus:ring-teal-400 focus:ring-offset-2 focus:ring-offset-teal-50"
           >
             <span className="absolute inset-[-1000%] animate-[spin_5s_linear_infinite] hover:animate-none bg-[conic-gradient(from_90deg_at_50%_50%,#A0F4F1_0%,#0ca899_50%,#A0F4F1_100%)]" />

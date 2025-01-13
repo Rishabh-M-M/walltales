@@ -85,7 +85,7 @@ export function AppleCardsCarouselDemo() {
         </h2>
         <div className="text-center">
           <Link
-            to="/gallery"
+            to="walltales/gallery"
             className="text-teal-600 hover:text-teal-900 font-semibold text-lg transition duration-200 mx-auto py-2"
           >
             Browse our Collection &rarr;

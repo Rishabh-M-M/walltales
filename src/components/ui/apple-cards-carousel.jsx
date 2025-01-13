@@ -13,6 +13,7 @@ import {
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
 import { useOutsideClick } from "@/hooks/use-outside-click";
+import { Link } from "react-router-dom";
 
 export const CarouselContext = createContext({
   onCardClose: () => { },
@@ -206,6 +207,13 @@ export const Card = ({ card, index, layout = false }) => {
                 className="text-2xl md:text-4xl font-semibold text-neutral-900 dark:text-white text-center"
               >
                 {card.title}
+                <br></br>
+                <Link
+                  to="/walltales/gallery"
+                  className="text-teal-600 hover:text-teal-900 font-semibold text-lg text-center transition duration-200 mx-auto py-2"
+                >
+                  View our Products &rarr;
+                </Link>
               </motion.p>
               <div className="flex gap-4 mt-6">
                 <img
