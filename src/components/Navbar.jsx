@@ -78,7 +78,7 @@ const Navbar = () => {
               <button
                 onClick={() => handleLinkClick(item.path)}
                 className={`block py-2 px-3 rounded transition-all duration-[1000ms] font-extrabold uppercase tracking-normal ${location.pathname === item.path
-                  ? "text-teal-700 font-semibold underline underline-offset-4 tracking-widest"  // Active item in teal
+                  ? "text-teal-700 font-semibold underline underline-offset-4 tracking-wide"  // Active item in teal
                   : "text-gray-700 hover:text-teal-700 hover:tracking-widest dark:text-white"  // Inactive items are gray
                   }`}
               >

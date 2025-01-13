@@ -81,12 +81,12 @@ const MosaicTiles = () => {
 
     return (
         <div>
-            <h1 className="text-2xl font-bold mb-4">Peel and Stick Tiles</h1>
+            <h1 className="text-2xl font-bold mb-4 tracking-wide">Mosaic Tiles: </h1>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 {products.map((product, index) => (
                     <div
                         key={index}
-                        className="group relative border rounded-xl overflow-hidden shadow-md hover:shadow-lg cursor-pointer"
+                        className="group relative border rounded-xl overflow-hidden shadow-md hover:shadow-lg cursor-pointer bg-white"
                         onClick={() => handleCardClick(product)}
                     >
                         <div className="relative w-auto h-96 overflow-hidden">
