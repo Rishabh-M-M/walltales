@@ -53,7 +53,7 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed w-full z-50 transition-all duration-[1500ms] ${isScrolled ? "py-1" : "py-3"} ${isTransitioning ? "h-screen bg-white" : "h-16 bg-white"
+      className={`fixed w-full z-50 transition-all duration-[1500ms] ${isScrolled ? "h-16" : "h-20"} ${isTransitioning ? "h-screen bg-white" : "h-16 bg-white"
         } flex justify-between items-center px-6 shadow-md dark:bg-gray-900`}
     >
       <div
@@ -72,14 +72,14 @@ const Navbar = () => {
 
       {/* Centered Menu */}
       {!isTransitioning && !reappearingDelay && (
-        <ul className="hidden custom-md:flex space-x-8 font-medium text-lg">
+        <ul className="hidden custom-md:flex space-x-16 font-medium text-lg">
           {MENU_ITEMS.map((item) => (
             <li key={item.name}>
               <button
                 onClick={() => handleLinkClick(item.path)}
-                className={`block py-2 px-3 rounded transition-all duration-[1000ms] ${location.pathname === item.path
-                  ? "text-teal-700 font-semibold"  // Active item in teal
-                  : "text-gray-700 hover:text-teal-700 dark:text-white"  // Inactive items are gray
+                className={`block py-2 px-3 rounded transition-all duration-[1000ms] font-extrabold uppercase tracking-normal ${location.pathname === item.path
+                  ? "text-teal-700 font-semibold underline underline-offset-4 tracking-widest"  // Active item in teal
+                  : "text-gray-700 hover:text-teal-700 hover:tracking-widest dark:text-white"  // Inactive items are gray
                   }`}
               >
                 {item.name}

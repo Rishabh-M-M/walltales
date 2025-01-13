@@ -1,42 +1,26 @@
 import React, { useEffect, useState } from "react";
 import {
-  FaPaintRoller,
-  FaWrench,
-  FaTint,
-  FaSun,
-  FaBroom,
-  FaPrint,
+  FaRegThumbsUp,
 } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { IoIosGlobe, IoIosInfinite } from "react-icons/io";
 
 const WhyChooseUs = () => {
   const [inView, setInView] = useState(false); // State to track if the section is in view
 
   const features = [
     {
-      icon: <FaPaintRoller />,
-      title: "Strong Adhesive Vinyl",
+      icon: <IoIosGlobe />,
+      title: "Global Reach",
     },
     {
-      icon: <FaWrench />,
-      title: "Easy & Quick to Install",
+      icon: <IoIosInfinite />,
+      title: "Endless Possibilities",
     },
     {
-      icon: <FaTint />,
-      title: "Waterproof & Oil Proof",
-    },
-    {
-      icon: <FaSun />,
-      title: "Fadeproof & Stainproof",
-    },
-    {
-      icon: <FaBroom />,
-      title: "Easily Clean & Maintain",
-    },
-    {
-      icon: <FaPrint />,
-      title: "High Quality UV Print",
+      icon: <FaRegThumbsUp />,
+      title: "Unparalleled Quality",
     },
   ];
 
@@ -69,10 +53,10 @@ const WhyChooseUs = () => {
             animate={{ opacity: inView ? 1 : 0, y: inView ? 0 : -20 }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-2xl px-2 md:text-4xl lg:text-4xl font-bold max-w-4xl text-center mx-auto pt-6 py-4 text-white">
+            <h2 className="text-2xl px-2 md:text-4xl lg:text-4xl font-bold max-w-4xl text-center mx-auto pt-6 py-3 text-white">
               About Walltales
             </h2>
-            <div className="mb-6">
+            <div className="mb-4">
               <Link
                 to="/about"
                 className="text-teal-200 hover:text-teal-100 font-semibold text-sm md:text-lg transition duration-200"
@@ -80,13 +64,8 @@ const WhyChooseUs = () => {
                 Explore More About Us &rarr;
               </Link>
             </div>
-            <p className="text-white text-sm md:text-lg">
-              At Walltales, we are committed to providing top-quality products
-              that offer both style and durability. We believe that everyone
-              should have access to affordable and easy DIY solutions, and our
-              peel and stick tiles are just one example of our commitment to
-              that mission.
-            </p>
+            <p className="text-white text-sm md:text-lg text-justify">
+              Walltales is a leading provider of innovative and exquisite wall decor solutions. We are passionate about transforming spaces into personalized reflections of individual style and creativity. With a global presence and a loyal customer base spanning the globe, we offer a diverse range of products, from innovative peel-and-stick tiles, captivating accent walls to and exquisite mosaic and elegant wallpapers creations. At Walltales, we believe that exceptional design should be accessible to everyone. We prioritize quality craftsmanship, utilizing premium materials and employing cutting-edge techniques to ensure lasting beauty and performance.</p>
           </motion.div>
 
           {/* Features Grid with Scroll Animation */}

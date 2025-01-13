@@ -203,11 +203,18 @@ export const Card = ({ card, index, layout = false }) => {
               </motion.p>
               <motion.p
                 layoutId={layout ? `title-${card.title}` : undefined}
-                className="text-2xl md:text-5xl font-semibold text-neutral-700 mt-4 dark:text-white"
+                className="text-2xl md:text-4xl font-semibold text-neutral-900 dark:text-white text-center"
               >
                 {card.title}
               </motion.p>
-              <div className="py-10">{card.content}</div>
+              <div className="flex gap-4 mt-6">
+                <img
+                  src={card.src}
+                  alt={card.title}
+                  className="w-2/12 h-auto object-center z-10 basis-4/12"
+                />
+                <div className="basis-8/12">{card.content}</div>
+              </div>
             </motion.div>
           </div>
         )}

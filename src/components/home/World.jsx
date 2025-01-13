@@ -109,7 +109,7 @@ export function GlobeDemo() {
                         Explore Our Global Reach
                     </h2>
                     <p className="text-center text-lg md:text-xl font-normal text-neutral-700 dark:text-neutral-200 max-w-2xl mx-auto">
-                        Our interactive globe showcases our worldwide connections. Dive in and discover the extent of our reach.
+                        Trusted by customers worldwide, we deliver exceptional design to homes and businesses across the globe.
                     </p>
                 </motion.div>
                 <div className="absolute w-full bottom-0 inset-x-0 h-40 bg-gradient-to-b pointer-events-none select-none from-transparent dark:to-black to-[rgba] z-40" />

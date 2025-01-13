@@ -10,7 +10,7 @@ function Home() {
 
   return (
     <>
-      <main className="mt-0 pt-24">
+      <main className="mt-0 pt-8">
         <Hero />
         <WhyChooseUs />
         <AppleCardsCarouselDemo />

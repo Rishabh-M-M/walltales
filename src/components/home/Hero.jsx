@@ -9,7 +9,7 @@ export function Hero() {
 
   return (
     <ImagesSlider
-      className="mx-auto -mt-7"
+      className="mx-auto"
       images={images}
     >
       <motion.div
