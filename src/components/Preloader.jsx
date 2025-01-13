@@ -20,7 +20,7 @@ const Preloader = () => {
       <img
         src={logo}
         alt="Walltales Logo"
-        className="w-24 h-24 animate-pulse"
+        className="w-full h-full animate-pulse"
       />
     </div>
   );
