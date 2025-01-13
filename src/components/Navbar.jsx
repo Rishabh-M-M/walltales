@@ -22,9 +22,10 @@ const Navbar = () => {
     if (location.pathname === path) return;
 
     setIsTransitioning(true);
+    setIsMenuOpen(false); // Close the menu during page transition
     setTimeout(() => {
       navigate(path);
-    }, 1500); // Increased transition time
+    }, 1500); // Transition time
   };
 
   useEffect(() => {
@@ -42,44 +43,62 @@ const Navbar = () => {
         setIsTransitioning(false);
         setReappearingDelay(true);
 
-        // Clear reappearingDelay after a brief delay
         setTimeout(() => {
           setReappearingDelay(false);
-        }, 1000); // Adjust delay here as needed
-      }, 2000); // Duration of transition reset
+        }, 1000);
+      }, 2000);
       return () => clearTimeout(timer);
     }
   }, [isTransitioning]);
 
   return (
     <nav
-      className={`fixed w-full z-50 transition-all duration-[1500ms] ${isScrolled ? "h-16" : "h-20"} ${isTransitioning ? "h-screen bg-white" : "h-16 bg-white"
-        } flex justify-between items-center px-6 shadow-md dark:bg-gray-900`}
+      className={`fixed w-full z-50 transition-all duration-[1500ms] ${isScrolled ? "h-16" : "h-20"
+        } ${isTransitioning ? "h-screen bg-white" : "h-16 bg-white"} flex items-center px-6 shadow-md dark:bg-gray-900`}
     >
-      <div
-        className={`transition-all duration-[5000ms] ${isTransitioning
-          ? "absolute inset-0 flex justify-center items-center"
-          : ""
-          }`}
-      >
-        <img
-          src={logo}
-          alt="Walltales Logo"
-          className={`transition-all duration-[1000ms] ${isTransitioning ? "h-24" : "h-8"
-            }`}
-        />
-      </div>
+      {/* Hamburger Menu */}
+      {!isTransitioning && (
+        <button
+          onClick={() => setIsMenuOpen((prev) => !prev)}
+          className={`inline-flex items-center p-2 w-10 h-10 text-sm text-gray-500 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600`}
+        >
+          {isMenuOpen ? (
+            <svg
+              className="w-6 h-6"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          ) : (
+            <svg
+              className="w-6 h-6"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7" />
+            </svg>
+          )}
+        </button>
+      )}
 
-      {/* Centered Menu */}
-      {!isTransitioning && !reappearingDelay && (
-        <ul className="hidden custom-md:flex space-x-16 font-medium text-lg">
+      {/* Side Menu */}
+      <div
+        className={`fixed top-0 left-0 h-full bg-white shadow-lg z-40 transition-transform duration-300 ${isMenuOpen ? "translate-x-0" : "-translate-x-full"
+          } w-2/3 md:w-1/3`}
+      >
+        <ul className="flex flex-col space-y-4 p-4">
           {MENU_ITEMS.map((item) => (
             <li key={item.name}>
               <button
                 onClick={() => handleLinkClick(item.path)}
-                className={`block py-2 px-3 rounded transition-all duration-[1000ms] font-extrabold uppercase tracking-normal ${location.pathname === item.path
-                  ? "text-teal-700 font-semibold underline underline-offset-4 tracking-wide"  // Active item in teal
-                  : "text-gray-700 hover:text-teal-700 hover:tracking-widest dark:text-white"  // Inactive items are gray
+                className={`block py-2 px-3 rounded text-left font-bold uppercase ${location.pathname === item.path
+                    ? "text-teal-700 underline underline-offset-4"
+                    : "text-gray-700 hover:text-teal-700"
                   }`}
               >
                 {item.name}
@@ -87,11 +106,35 @@ const Navbar = () => {
             </li>
           ))}
         </ul>
-      )}
+        {/* Close Button */}
+        <button
+          onClick={() => setIsMenuOpen(false)}
+          className="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
+        >
+          <svg
+            className="w-6 h-6"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+      {/* Centered Logo */}
+      <div className="flex-1 flex justify-center">
+        <img
+          src={logo}
+          alt="Walltales Logo"
+          className={`transition-all duration-[1000ms] ${isTransitioning ? "h-24" : "h-8"}`}
+        />
+      </div>
 
       {/* Get a Call Button */}
       {!isTransitioning && !reappearingDelay && (
-        <div className="relative hidden custom-md:block">
+        <div className="relative">
           <Link
             to="/Contact"
             className="relative inline-flex h-12 overflow-hidden rounded-full p-[3px] focus:outline-none focus:ring-2 focus:ring-teal-400 focus:ring-offset-2 focus:ring-offset-teal-50"
@@ -103,46 +146,6 @@ const Navbar = () => {
             </span>
           </Link>
         </div>
-      )}
-
-      {/* Hamburger for mobile */}
-      {!isTransitioning && !reappearingDelay && (
-        <button
-          onClick={() => setIsMenuOpen((prev) => !prev)}
-          className="inline-flex items-center p-2 w-10 h-10 text-sm text-gray-500 rounded-lg custom-md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-        >
-          {isMenuOpen ? (
-            <svg
-              className="w-6 h-6"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M6 18L18 6M6 6l12 12"
-              />
-            </svg>
-          ) : (
-            <svg
-              className="w-6 h-6"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4 6h16M4 12h16m-7 6h7"
-              />
-            </svg>
-          )}
-        </button>
       )}
     </nav>
   );
