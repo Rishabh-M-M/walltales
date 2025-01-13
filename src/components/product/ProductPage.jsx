@@ -7,7 +7,7 @@ import wallTileStickersImage from "@/assets/Products/Wall Tile Stickers/WTSbanne
 import floorTileStickersImage from "@/assets/Products/Floor Tile Stickers/FTSbanner.jpeg";
 import mosaicTilesImage from "@/assets/Products/Mosaic Tiles/MTbanner.jpeg";
 import accentWallImage from "@/assets/Products/Accent Wall/AWbanner.jpeg";
-import decorPlateImage from "@/assets/Products/Decore Plate/DPbanner.jpeg";
+import decorePlateImage from "@/assets/Products/Decore Plate/DPbanner.jpeg";
 import wallpapersImage from "@/assets/Products/Wallpapers/WPbanner.jpeg";
 
 // Category Components
@@ -16,7 +16,7 @@ import WallTileStickers from "./categories/WallTileStickers";
 import FloorTileStickers from "./categories/FloorTileStickers";
 import MosaicTiles from "./categories/MosaicTiles";
 import AccentWall from "./categories/AccentWall";
-import DecorPlate from "./categories/DecorPlate";
+import DecorePlate from "./categories/DecorPlate";
 import Wallpapers from "./categories/Wallpapers";
 
 const categories = [
@@ -25,7 +25,7 @@ const categories = [
   { name: "Floor Tile Stickers", image: floorTileStickersImage, component: FloorTileStickers },
   { name: "Mosaic Tiles", image: mosaicTilesImage, component: MosaicTiles },
   { name: "Accent Wall", image: accentWallImage, component: AccentWall },
-  { name: "Decor Plate", image: decorPlateImage, component: DecorPlate },
+  { name: "Decore Plate", image: decorePlateImage, component: DecorePlate },
   { name: "Wallpapers", image: wallpapersImage, component: Wallpapers },
 ];
 
