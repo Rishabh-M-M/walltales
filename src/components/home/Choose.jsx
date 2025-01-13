@@ -1,21 +1,22 @@
 import React, { useEffect, useState } from "react";
 import {
+  FaGlobe,
+  FaInfinity,
   FaRegThumbsUp,
 } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { IoIosGlobe, IoIosInfinite } from "react-icons/io";
 
 const WhyChooseUs = () => {
   const [inView, setInView] = useState(false); // State to track if the section is in view
 
   const features = [
     {
-      icon: <IoIosGlobe />,
+      icon: <FaGlobe />,
       title: "Global Reach",
     },
     {
-      icon: <IoIosInfinite />,
+      icon: <FaInfinity />,
       title: "Endless Possibilities",
     },
     {

@@ -115,14 +115,14 @@ const Navbar = () => {
 
       <div
         className={`fixed top-0 left-0 h-full bg-white shadow-lg z-40 transition-transform duration-500 ${isMenuOpen ? "translate-x-0" : "-translate-x-full"
-          } w-2/5 md:w-1/5`}
+          } w-screen md:w-1/5`}
       >
-        <ul className="flex flex-col space-y-6 p-6 mt-12">
+        <ul className="flex flex-col space-y-8 p-6 mt-12 items-center md:items-baseline">
           {MENU_ITEMS.map((item) => (
             <li key={item.name} className="flex items-center space-x-4">
               <button
                 onClick={() => handleLinkClick(item.path)}
-                className={`flex items-center py-3 px-4 text-lg font-semibold rounded text-left uppercase ${location.pathname === item.path
+                className={`flex items-center py-3 px-4 text-lg text-center font-semibold rounded md:text-left uppercase ${location.pathname === item.path
                   ? "text-teal-700 underline underline-offset-4"
                   : "text-gray-700 hover:text-teal-700"
                   }`}
@@ -132,6 +132,19 @@ const Navbar = () => {
               </button>
             </li>
           ))}
+          {/* "Get a Call" button only visible on mobile */}
+          <li className="block md:hidden">
+            <Link
+              to="/Contact"
+              className="relative inline-flex h-12 overflow-hidden rounded-full p-[3px] focus:outline-none focus:ring-2 focus:ring-teal-400 focus:ring-offset-2 focus:ring-offset-teal-50"
+            >
+              <span className="absolute inset-[-1000%] animate-[spin_5s_linear_infinite] hover:animate-none bg-[conic-gradient(from_90deg_at_50%_50%,#A0F4F1_0%,#0ca899_50%,#A0F4F1_100%)]" />
+              <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-white px-8 py-1 font-medium text-teal-600 backdrop-blur-3xl hover:text-teal-800">
+                <FaPhone className="mr-4 text-md -rotate-12" />
+                Get a Call
+              </span>
+            </Link>
+          </li>
         </ul>
         <button
           onClick={() => setIsMenuOpen(false)}
@@ -163,14 +176,16 @@ const Navbar = () => {
         />
       </div>
 
+
+      {/* "Get a Call" button for larger screens */}
       {!isTransitioning && !reappearingDelay && (
-        <div className="absolute right-6 top-4">
+        <div className="hidden md:flex absolute right-10 top-4">
           <Link
             to="/Contact"
             className="relative inline-flex h-12 overflow-hidden rounded-full p-[3px] focus:outline-none focus:ring-2 focus:ring-teal-400 focus:ring-offset-2 focus:ring-offset-teal-50"
           >
             <span className="absolute inset-[-1000%] animate-[spin_5s_linear_infinite] hover:animate-none bg-[conic-gradient(from_90deg_at_50%_50%,#A0F4F1_0%,#0ca899_50%,#A0F4F1_100%)]" />
-            <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-white px-8 py-1 text-md font-medium text-teal-600 backdrop-blur-3xl hover:text-teal-800">
+            <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-white px-8 py-1 font-medium text-teal-600 backdrop-blur-3xl hover:text-teal-800">
               <FaPhone className="mr-4 text-md -rotate-12" />
               Get a Call
             </span>

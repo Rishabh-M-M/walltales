@@ -16,11 +16,11 @@ const Preloader = () => {
   if (isLoaded) return null; // Hide preloader after loading
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-teal-600 z-50">
+    <div className="fixed inset-0 flex items-center justify-center h-screen bg-teal-600 z-[100]">
       <img
         src={logo}
         alt="Walltales Logo"
-        className="w-full h-full animate-pulse"
+        className="w-[25vw] h-auto animate-pulse"
       />
     </div>
   );
