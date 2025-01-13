@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import Preloader from "./components/Preloader"; // Import the Preloader
 import "./App.css";
 
 // Pages
@@ -28,24 +29,27 @@ const ScrollToTop = () => {
 
 function App() {
   return (
-    <BrowserRouter>
-      <ScrollToTop /> {/* Ensure scrolling to top on route change */}
-      <Navbar />
-      <Routes>
-        <Route index element={<Home />} />
-        <Route path="walltales/home" element={<Home />} />
-        <Route path="walltales/" element={<Home />} />
-        <Route path="walltales/about" element={<About />} />
-        <Route path="walltales/products" element={<Products />} />
-        <Route path="walltales/gallery" element={<Gallery />} />
-        <Route path="walltales/blog" element={<Blog />} />
-        <Route path="walltales/testimonials" element={<Testimonials />} />
-        <Route path="walltales/contact" element={<Contact />} />
-        <Route path="walltales/FAQ" element={<FAQ />} />
-        <Route path="*" element={<Nopage />} />
-      </Routes>
-      <Footer />
-    </BrowserRouter>
+    <>
+      <Preloader /> {/* Add the Preloader */}
+      <BrowserRouter>
+        <ScrollToTop /> {/* Ensure scrolling to top on route change */}
+        <Navbar />
+        <Routes>
+          <Route index element={<Home />} />
+          <Route path="walltales/home" element={<Home />} />
+          <Route path="walltales/" element={<Home />} />
+          <Route path="walltales/about" element={<About />} />
+          <Route path="walltales/products" element={<Products />} />
+          <Route path="walltales/gallery" element={<Gallery />} />
+          <Route path="walltales/blog" element={<Blog />} />
+          <Route path="walltales/testimonials" element={<Testimonials />} />
+          <Route path="walltales/contact" element={<Contact />} />
+          <Route path="walltales/FAQ" element={<FAQ />} />
+          <Route path="*" element={<Nopage />} />
+        </Routes>
+        <Footer />
+      </BrowserRouter>
+    </>
   );
 }
 

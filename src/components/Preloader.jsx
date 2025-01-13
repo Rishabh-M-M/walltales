@@ -1,17 +1,26 @@
-import React from "react";
-import logo from "@/assets/logo.png";
+import React, { useEffect, useState } from "react";
+import logo from "@/assets/Artboard 8.png"; // Import the white version of the logo
 
-const Preloader = ({ isLoading }) => {
+const Preloader = () => {
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    // Simulate loading time (adjust as needed)
+    const timer = setTimeout(() => {
+      setIsLoaded(true);
+    }, 1500); // 1.5 seconds delay
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (isLoaded) return null; // Hide preloader after loading
+
   return (
-    <div
-      className={`fixed inset-0 bg-white z-[9999] flex flex-col items-center justify-center transform transition-transform duration-700 ${isLoading ? "translate-y-0" : "-translate-y-full"
-        }`}
-    >
+    <div className="fixed inset-0 flex items-center justify-center bg-teal-600 z-50">
       <img
         src={logo}
         alt="Walltales Logo"
-        className={`h-16 transition-transform duration-700 ${isLoading ? "translate-y-0" : "translate-y-[-50vh]"
-          }`}
+        className="w-24 h-24 animate-pulse"
       />
     </div>
   );
