@@ -1,6 +1,6 @@
 import React from "react";
 import { Timeline } from "@/components/ui/timeline";
-import { GlobeDemo } from "../home/World";
+import { GlobeDemo } from "./World";
 import Infinity from "./infinite";
 
 export function TimelineDemo() {

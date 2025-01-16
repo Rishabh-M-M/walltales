@@ -4,7 +4,8 @@ import { Hero } from "../components/home/Hero";
 import WhyChooseUs from "../components/home/Choose";
 import { InfiniteMovingCardsDemo } from "../components/home/Reviews";
 import { AppleCardsCarouselDemo } from "../components/home/Categories";
-import { GlobeDemo } from "../components/home/World";
+import MySlider from "../components/home/VideoCarousel";
+
 function Home() {
   const [count, setCount] = useState(0);
 
@@ -16,7 +17,7 @@ function Home() {
         <AppleCardsCarouselDemo />
         {/* <FocusCardsDemo /> */}
         <InfiniteMovingCardsDemo />
-        <GlobeDemo />
+        <MySlider />
       </main>
     </>
   );

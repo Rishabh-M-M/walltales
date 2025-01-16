@@ -64,7 +64,7 @@ const WhyChooseUs = () => {
             </h2>
             <div className="mb-4">
               <Link
-                to="/about"
+                to="/walltales/about"
                 className="text-teal-200 hover:text-teal-100 font-semibold text-sm md:text-lg transition duration-200"
               >
                 Explore More About Us &rarr;

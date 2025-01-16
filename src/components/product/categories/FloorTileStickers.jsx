@@ -86,7 +86,7 @@ const FloorTileStickers = () => {
                 {products.map((product, index) => (
                     <div
                         key={index}
-                        className="group relative border rounded-xl overflow-hidden shadow-md hover:shadow-lg cursor-pointer"
+                        className="group relative border rounded-xl overflow-hidden shadow-md hover:shadow-lg cursor-pointer hover:ring-4 hover:ring-teal-500"
                         onClick={() => handleCardClick(product)}
                     >
                         <div className="relative w-auto h-96 overflow-hidden">
@@ -129,7 +129,7 @@ const FloorTileStickers = () => {
                             <img
                                 src={selectedProduct.images[currentImageIndex]}
                                 alt={`Product Image ${currentImageIndex + 1}`}
-                                className="w-full h-full object-cover"
+                                className="w-auto h-full max-h-96 object-cover"
                                 onError={(e) => (e.target.src = "/fallback-image.jpg")}
                             />
                             <button
