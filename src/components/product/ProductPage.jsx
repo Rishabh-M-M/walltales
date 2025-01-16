@@ -13,24 +13,24 @@ import wallpapersImage from "@/assets/Products/Wallpapers/WPbanner.jpeg";
 // Category Components
 import PeelAndStickTiles from "./categories/PeelAndStickTiles";
 import WallTileStickers from "./categories/WallTileStickers";
-import FloorTileStickers from "./categories/FloorTileStickers";
+import PeelAndStickFloorTiles from "./categories/PeelAndStickFloorTiles";
 import MosaicTiles from "./categories/MosaicTiles";
 import AccentWall from "./categories/AccentWall";
 import DecorePlate from "./categories/DecorPlate";
 import Wallpapers from "./categories/Wallpapers";
 
 const categories = [
+  { name: "Accent Wall", image: accentWallImage, component: AccentWall },
   { name: "Peel and Stick Tiles", image: peelAndStickTilesImage, component: PeelAndStickTiles },
   { name: "Wall Tile Stickers", image: wallTileStickersImage, component: WallTileStickers },
-  { name: "Floor Tile Stickers", image: floorTileStickersImage, component: FloorTileStickers },
+  { name: "Peel and Stick Floor Tiles", image: floorTileStickersImage, component: PeelAndStickFloorTiles },
   { name: "Mosaic Tiles", image: mosaicTilesImage, component: MosaicTiles },
-  { name: "Accent Wall", image: accentWallImage, component: AccentWall },
   { name: "Decore Plate", image: decorePlateImage, component: DecorePlate },
   { name: "Wallpapers", image: wallpapersImage, component: Wallpapers },
 ];
 
 const ProductPage = () => {
-  const [selectedCategory, setSelectedCategory] = useState("Peel and Stick Tiles");
+  const [selectedCategory, setSelectedCategory] = useState("Accent Wall");
 
   const handleTabClick = (categoryName) => {
     setSelectedCategory(categoryName);

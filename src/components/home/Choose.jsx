@@ -10,6 +10,8 @@ import { motion } from "framer-motion";
 
 const WhyChooseUs = () => {
   const [inView, setInView] = useState(false); // State to track if the section is in view
+  const [isExpanded, setIsExpanded] = useState(false); // State to toggle "Read More" functionality
+  const [isMobile, setIsMobile] = useState(false); // State to check screen size
 
   const features = [
     {
@@ -30,6 +32,9 @@ const WhyChooseUs = () => {
     },
   ];
 
+  const text =
+    "Walltales is a leading provider of innovative and exquisite wall decor solutions. We are passionate about transforming spaces into personalized reflections of individual style and creativity. With a global presence and a loyal customer base spanning the globe, we offer a diverse range of products, from innovative peel-and-stick tiles, captivating accent walls to and exquisite mosaic and elegant wallpapers creations. At Walltales, we believe that exceptional design should be accessible to everyone. We prioritize quality craftsmanship, utilizing premium materials and employing cutting-edge techniques to ensure lasting beauty and performance.";
+
   // Set up IntersectionObserver when the component mounts
   useEffect(() => {
     const handleScroll = () => {
@@ -42,9 +47,19 @@ const WhyChooseUs = () => {
       }
     };
 
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768); // Check if the screen width is less than or equal to 768px
+    };
+
     window.addEventListener("scroll", handleScroll);
+    window.addEventListener("resize", handleResize);
+
+    // Check initial screen size
+    handleResize();
+
     return () => {
       window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
 
@@ -70,9 +85,17 @@ const WhyChooseUs = () => {
                 Explore More About Us &rarr;
               </Link>
             </div>
-            <p className="text-white text-sm md:text-lg text-justify">
-              Walltales is a leading provider of innovative and exquisite wall decor solutions. We are passionate about transforming spaces into personalized reflections of individual style and creativity. With a global presence and a loyal customer base spanning the globe, we offer a diverse range of products, from innovative peel-and-stick tiles, captivating accent walls to and exquisite mosaic and elegant wallpapers creations. At Walltales, we believe that exceptional design should be accessible to everyone. We prioritize quality craftsmanship, utilizing premium materials and employing cutting-edge techniques to ensure lasting beauty and performance.
+            <p className="text-white text-sm md:text-lg text-center md:text-justify">
+              {isMobile && !isExpanded ? `${text.slice(0, 200)}...` : text}
             </p>
+            {isMobile && (
+              <button
+                onClick={() => setIsExpanded(!isExpanded)}
+                className="text-teal-200 hover:text-teal-100 font-semibold text-sm md:text-lg mt-2 transition duration-200"
+              >
+                {isExpanded ? "Read Less" : "Read More"}
+              </button>
+            )}
           </motion.div>
 
           {/* Features Grid with Scroll Animation */}

@@ -2,15 +2,15 @@ import React, { useEffect } from 'react';
 import { AiOutlineLeft, AiOutlineRight } from 'react-icons/ai';
 
 const MyCarousel = () => {
-    // ------------------ CLICK HANDLER ------------------
     useEffect(() => {
         const handleClick = (e) => {
-            if (e.target.closest('.prev')) {
-                updatePrev();
-            } else if (e.target.closest('.next')) {
-                updateNext();
-            }
+            const prevEl = e.target.closest('.prev');
+            const nextEl = e.target.closest('.next');
+
+            if (prevEl) updatePrev();
+            if (nextEl) updateNext();
         };
+
         document.addEventListener('click', handleClick);
         return () => document.removeEventListener('click', handleClick);
     }, []);
@@ -45,87 +45,148 @@ const MyCarousel = () => {
     // Re-apply the .small1, .big1, .focus, .big2, .small2 classes
     function reapplyItemClasses(items) {
         items.forEach((item) => {
-            // Remove all previous classes
             item.classList.remove('small1', 'big1', 'focus', 'big2', 'small2');
 
-            // Read the updated order
             const pos = parseInt(item.style.order);
 
-            // Add the correct class based on `order`
-            if (pos === 0) {
-                item.classList.add('small1');
-            } else if (pos === 1) {
-                item.classList.add('big1');
-            } else if (pos === 2) {
-                item.classList.add('focus');
-            } else if (pos === 3) {
-                item.classList.add('big2');
-            } else if (pos === 4) {
-                item.classList.add('small2');
+            switch (pos) {
+                case 0:
+                    item.classList.add('small1');
+                    break;
+                case 1:
+                    item.classList.add('big1');
+                    break;
+                case 2:
+                    item.classList.add('focus');
+                    break;
+                case 3:
+                    item.classList.add('big2');
+                    break;
+                case 4:
+                    item.classList.add('small2');
+                    break;
+                default:
+                    break;
             }
         });
     }
 
     return (
         <>
-            {/* Inline styles for convenience (no separate file) */}
             <style>{`
-        /* Smooth transition */
+        /* SMOOTH TRANSITIONS */
         .item {
           flex: 1 0 20%;
           height: 100%;
           object-fit: cover;
           transition: all 0.6s ease-in-out;
+          position: absolute;
         }
 
-        /* Example: Using vh for top offsets, vw for left offsets */
+        /* LARGE SCREEN DEFAULTS */
         .small1, .small2 {
           height: 50vh;
-          position: absolute;
-          z-index: -1;
           top: 8vh;
+          z-index: -1;
         }
         .big1, .big2 {
           height: 60vh;
-          position: absolute;
-          z-index: 0;
           top: 5vh;
+          z-index: 0;
         }
         .focus {
-          position: absolute;
-          z-index: 1;
           height: 75vh;
           top: 1vh;
+          z-index: 1;
         }
 
-        /* Left offsets with vw */
-        .small1 {
-          left: 9vw;
+        /* LEFT OFFSETS (DESKTOP) */
+        .small1 { left: 9vw; }
+        .big1   { left: 17vw; }
+        .focus  { left: 27vw; }
+        .big2   { left: 40vw; }
+        .small2 { left: 52vw; }
+
+        /* ------------------ MEDIA QUERIES ------------------ */
+        @media (max-width: 1024px) {
+          /* Tweak for tablets */
+          .small1, .small2 {
+            height: 40vh;
+            top: 6vh;
+          }
+          .big1, .big2 {
+            height: 50vh;
+            top: 4vh;
+          }
+          .focus {
+            height: 60vh;
+            top: 2vh;
+          }
+
+          /* Slightly reduce left offsets for tablets */
+          .small1 { left: 8vw; }
+          .big1   { left: 16vw; }
+          .focus  { left: 27vw; }
+          .big2   { left: 38vw; }
+          .small2 { left: 50vw; }
         }
-        .big1 {
-          left: 17vw; 
+
+        @media (max-width: 768px) {
+          /* Phone-ish sizes */
+          .small1, .small2 {
+            height: 30vh;
+            top: 8vh;
+          }
+          .big1, .big2 {
+            height: 35vh;
+            top: 6vh;
+          }
+          .focus {
+            height: 45vh;
+            top: 3vh;
+          }
+
+          /* Reduce the left offsets so everything stays in view */
+          .small1 { left: 5vw; }
+          .big1   { left: 15vw; }
+          .focus  { left: 28vw; }
+          .big2   { left: 41vw; }
+          .small2 { left: 53vw; }
         }
-        .focus {
-          left: 27vw; 
-        }
-        .big2 {
-          left: 40vw; 
-        }
-        .small2 {
-          left: 52vw; 
+
+        @media (max-width: 500px) {
+          /* Very small screens */
+          .small1, .small2 {
+            height: 25vh;
+            top: 8vh;
+          }
+          .big1, .big2 {
+            height: 30vh;
+            top: 5vh;
+          }
+          .focus {
+            height: 35vh;
+            top: 3vh;
+          }
+
+          /* Further reduce left offsets */
+          .small1 { left: 3vw; }
+          .big1   { left: 12vw; }
+          .focus  { left: 24vw; }
+          .big2   { left: 36vw; }
+          .small2 { left: 48vw; }
         }
       `}</style>
 
-            {/* Actual Carousel Structure */}
             <div className="flex flex-col items-center justify-center">
                 <h2 className="text-xl px-2 md:text-4xl lg:text-4xl font-bold text-neutral-900 dark:text-white max-w-4xl text-center py-12">
                     Video Gallery
                 </h2>
 
-                {/* Slider Wrapper (centered) */}
-                <div className="relative w-[80vw] mx-auto">
+                {/* Slider Wrapper (centered). Added overflow-hidden to clip any leftover */}
+                <div className="relative w-[80vw] mx-auto overflow-hidden">
                     {/* Previous Button */}
-                    <div className="prev absolute top-1/2 -translate-y-1/2 left-2 text-[30px] cursor-pointer font-semibold">
+                    <div className="prev absolute top-1/2 -translate-y-1/2 left-2 text-[30px] cursor-pointer font-semibold z-10">
                         <AiOutlineLeft />
                     </div>
 
@@ -174,7 +235,7 @@ const MyCarousel = () => {
                     </ul>
 
                     {/* Next Button */}
-                    <div className="next absolute top-1/2 -translate-y-1/2 right-2 text-[30px] cursor-pointer font-semibold">
+                    <div className="next absolute top-1/2 -translate-y-1/2 right-2 text-[30px] cursor-pointer font-semibold z-10">
                         <AiOutlineRight />
                     </div>
                 </div>

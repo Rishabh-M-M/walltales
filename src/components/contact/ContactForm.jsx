@@ -4,6 +4,7 @@ const ContactForm = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    phone: '',
     message: ''
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -103,6 +104,25 @@ const ContactForm = () => {
               Full name
             </label>
           </div>
+
+          {/* Number Input */}
+          <div className="relative">
+            <input
+              type="number"
+              name="phone"
+              value={formData.phone}
+              onChange={handleInputChange}
+              onFocus={() => handleInputFocus('phone')}
+              onBlur={() => handleInputBlur('phone')}
+              className="w-full border-b-2 border-gray-300 py-2 focus:outline-none focus:border-teal-500 transition-colors bg-transparent"
+              required
+            />
+            <label className={`absolute left-0 transition-all duration-300 pointer-events-none 
+              ${activeInputs.phone || formData.phone ? 'text-xs -top-4 text-teal-500' : 'top-2 text-gray-500'}`}>
+              Phone number
+            </label>
+          </div>
+
 
           {/* Email Input */}
           <div className="relative">
