@@ -1,7 +1,8 @@
 import React from "react";
+import FAQAccordion from "../components/Accordion";
 
 const FAQ = () => {
-  return <div>FAQ</div>;
+  return <FAQAccordion />;
 };
 
 export default FAQ;

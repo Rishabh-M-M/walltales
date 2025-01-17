@@ -10,37 +10,32 @@ const Footer = () => {
           <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
           <ul>
             <li>
-              <a href="/home" className="hover:text-teal-500">
+              <a href="/walltales/home" className="hover:text-teal-500">
                 Home
               </a>
             </li>
             <li>
-              <a href="/about" className="hover:text-teal-500">
+              <a href="/walltales/about" className="hover:text-teal-500">
                 About Us
               </a>
             </li>
             <li>
-              <a href="/products" className="hover:text-teal-500">
+              <a href="/walltales/products" className="hover:text-teal-500">
                 Products
               </a>
             </li>
             <li>
-              <a href="/gallery" className="hover:text-teal-500">
+              <a href="/walltales/gallery" className="hover:text-teal-500">
                 Gallery
               </a>
             </li>
             <li>
-              <a href="/blog" className="hover:text-teal-500">
-                Blog
+              <a href="/walltales/FAQ" className="hover:text-teal-500">
+                FAQs
               </a>
             </li>
             <li>
-              <a href="/testimonials" className="hover:text-teal-500">
-                Testimonials
-              </a>
-            </li>
-            <li>
-              <a href="/contact" className="hover:text-teal-500">
+              <a href="/walltales/contact" className="hover:text-teal-500">
                 Contact Us
               </a>
             </li>
