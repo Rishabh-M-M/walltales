@@ -12,27 +12,33 @@ const Footer = () => {
           <ul>
             <li>
               <Link to="/walltales/home" className="hover:text-teal-500">
-                Home <Link />
+                Home
+              </Link>
             </li>
             <li>
               <Link to="/walltales/about" className="hover:text-teal-500">
-                About Us <Link />
+                About Us
+              </Link>
             </li>
             <li>
               <Link to="/walltales/products" className="hover:text-teal-500">
-                Products <Link />
+                Products
+              </Link>
             </li>
             <li>
               <Link to="/walltales/gallery" className="hover:text-teal-500">
-                Gallery <Link />
+                Gallery
+              </Link>
             </li>
             <li>
               <Link to="/walltales/FAQ" className="hover:text-teal-500">
-                FAQs <Link />
+                FAQs
+              </Link>
             </li>
             <li>
               <Link to="/walltales/contact" className="hover:text-teal-500">
-                Contact Us <Link />
+                Contact Us
+              </Link>
             </li>
           </ul>
         </div>
