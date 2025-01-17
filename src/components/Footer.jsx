@@ -1,5 +1,6 @@
 import React from "react";
 import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from "react-icons/fa"; // Import social media icons from react-icons
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -10,34 +11,28 @@ const Footer = () => {
           <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
           <ul>
             <li>
-              <a href="/walltales/home" className="hover:text-teal-500">
-                Home
-              </a>
+              <Link to="/walltales/home" className="hover:text-teal-500">
+                Home <Link />
             </li>
             <li>
-              <a href="/walltales/about" className="hover:text-teal-500">
-                About Us
-              </a>
+              <Link to="/walltales/about" className="hover:text-teal-500">
+                About Us <Link />
             </li>
             <li>
-              <a href="/walltales/products" className="hover:text-teal-500">
-                Products
-              </a>
+              <Link to="/walltales/products" className="hover:text-teal-500">
+                Products <Link />
             </li>
             <li>
-              <a href="/walltales/gallery" className="hover:text-teal-500">
-                Gallery
-              </a>
+              <Link to="/walltales/gallery" className="hover:text-teal-500">
+                Gallery <Link />
             </li>
             <li>
-              <a href="/walltales/FAQ" className="hover:text-teal-500">
-                FAQs
-              </a>
+              <Link to="/walltales/FAQ" className="hover:text-teal-500">
+                FAQs <Link />
             </li>
             <li>
-              <a href="/walltales/contact" className="hover:text-teal-500">
-                Contact Us
-              </a>
+              <Link to="/walltales/contact" className="hover:text-teal-500">
+                Contact Us <Link />
             </li>
           </ul>
         </div>
