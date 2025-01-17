@@ -223,6 +223,7 @@ export const Card = ({ card = {}, index = 0, layout = false }) => {
       <motion.button
         layoutId={layout ? `card-${card.title}` : undefined}
         onClick={handleOpen}
+        whileHover={{ translateY: -12 }}
         className="rounded-3xl bg-gray-100 dark:bg-neutral-900 h-80 w-56 md:h-[30rem] md:w-80 overflow-hidden flex flex-col items-start justify-start relative z-10"
       >
         <div className="relative z-40 p-8">
