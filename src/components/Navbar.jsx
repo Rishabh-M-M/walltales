@@ -79,7 +79,7 @@ const Navbar = () => {
           onClick={() => setIsMenuOpen((prev) => !prev)}
           className="inline-flex items-center p-2 w-10 h-10 text-sm text-gray-500 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
         >
-          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M4 18H10" stroke="#000000" stroke-width="2" stroke-linecap="round"></path> <path d="M4 12L16 12" stroke="#000000" stroke-width="2" stroke-linecap="round"></path> <path d="M4 6L20 6" stroke="#000000" stroke-width="2" stroke-linecap="round"></path> </g></svg>
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M4 18H10" stroke="#000000" strokeWidth="2" strokeLinecap="round"></path> <path d="M4 12L16 12" stroke="#000000" strokeWidth="2" strokeLinecap="round"></path> <path d="M4 6L20 6" stroke="#000000" strokeWidth="2" strokeLinecap="round"></path> </g></svg>
 
         </button>
       )}
@@ -94,7 +94,7 @@ const Navbar = () => {
               <button
                 onClick={() => handleLinkClick(item.path)}
                 className={`flex items-center py-3 px-4 text-lg text-center font-semibold rounded md:text-left uppercase ${location.pathname === item.path
-                  ? "text-teal-700 underline underline-offset-4 tracking-wide"
+                  ? "text-teal-700 tracking-wide"
                   : "text-gray-700 hover:text-teal-700 hover:tracking-widest duration-500"
                   }`}
               >
@@ -104,7 +104,7 @@ const Navbar = () => {
             </li>
           ))}
           {/* "Get a Call" button only visible on mobile */}
-          <li className="block md:hidden">
+          <li className="block lg:hidden">
             <Link
               to="/Contact"
               className="relative inline-flex h-12 overflow-hidden rounded-full p-[3px] focus:outline-none focus:ring-2 focus:ring-teal-400 focus:ring-offset-2 focus:ring-offset-teal-50"
@@ -150,7 +150,7 @@ const Navbar = () => {
 
       {/* "Get a Call" button for larger screens */}
       {!isTransitioning && !reappearingDelay && (
-        <div className="hidden md:flex absolute right-10 top-4">
+        <div className="hidden lg:flex absolute right-10 top-4">
           <Link
             to="/walltales/Contact"
             className="relative inline-flex h-12 overflow-hidden rounded-full p-[3px] focus:outline-none focus:ring-2 focus:ring-teal-400 focus:ring-offset-2 focus:ring-offset-teal-50"

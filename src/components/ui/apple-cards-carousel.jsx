@@ -20,10 +20,10 @@ export const CarouselContext = createContext({
   currentIndex: 0,
 });
 
-export const Carousel = ({ items, initialScroll = 0 }) => {
-  const carouselRef = React.useRef(null);
-  const [canScrollLeft, setCanScrollLeft] = React.useState(false);
-  const [canScrollRight, setCanScrollRight] = React.useState(true);
+export const Carousel = ({ items = [], initialScroll = 0 }) => {
+  const carouselRef = useRef(null);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(true);
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
@@ -66,14 +66,10 @@ export const Carousel = ({ items, initialScroll = 0 }) => {
     }
   };
 
-  const isMobile = () => {
-    return window && window.innerWidth < 768;
-  };
+  const isMobile = () => window && window.innerWidth < 768;
 
   return (
-    <CarouselContext.Provider
-      value={{ onCardClose: handleCardClose, currentIndex }}
-    >
+    <CarouselContext.Provider value={{ onCardClose: handleCardClose, currentIndex }}>
       <div className="relative w-full">
         <div
           className="flex w-full overflow-x-scroll overscroll-x-auto py-8 md:py-10 scroll-smooth [scrollbar-width:none]"
@@ -82,15 +78,14 @@ export const Carousel = ({ items, initialScroll = 0 }) => {
         >
           <div
             className={cn(
-              "absolute right-0  z-[1000] h-auto  w-[5%] overflow-hidden bg-gradient-to-l",
+              "absolute right-0 z-[1000] h-auto w-[5%] overflow-hidden bg-gradient-to-l"
             )}
           ></div>
 
           <div
             className={cn(
               "flex flex-row justify-start gap-4 pl-4",
-              // remove max-w-4xl if you want the carousel to span the full width of its container
-              "max-w-7xl mx-auto",
+              "max-w-7xl mx-auto"
             )}
           >
             {items.map((item, index) => (
@@ -110,7 +105,7 @@ export const Carousel = ({ items, initialScroll = 0 }) => {
                   },
                 }}
                 key={"card" + index}
-                className="last:pr-[5%] md:last:pr-[33%]  rounded-3xl"
+                className="last:pr-[5%] md:last:pr-[33%] rounded-3xl"
               >
                 {item}
               </motion.div>
@@ -138,7 +133,7 @@ export const Carousel = ({ items, initialScroll = 0 }) => {
   );
 };
 
-export const Card = ({ card, index, layout = false }) => {
+export const Card = ({ card = {}, index = 0, layout = false }) => {
   const [open, setOpen] = useState(false);
   const containerRef = useRef(null);
   const { onCardClose, currentIndex } = useContext(CarouselContext);
@@ -162,9 +157,7 @@ export const Card = ({ card, index, layout = false }) => {
 
   useOutsideClick(containerRef, () => handleClose());
 
-  const handleOpen = () => {
-    setOpen(true);
-  };
+  const handleOpen = () => setOpen(true);
 
   const handleClose = () => {
     setOpen(false);
@@ -188,7 +181,7 @@ export const Card = ({ card, index, layout = false }) => {
               exit={{ opacity: 0 }}
               ref={containerRef}
               layoutId={layout ? `card-${card.title}` : undefined}
-              className="max-w-5xl mx-auto bg-white dark:bg-neutral-900 h-fit  z-[60] my-10 p-4 md:p-10 rounded-3xl font-sans relative"
+              className="max-w-5xl mx-auto bg-white dark:bg-neutral-900 h-fit z-[60] my-10 p-4 md:p-10 rounded-3xl font-sans relative"
             >
               <button
                 className="sticky top-4 h-8 w-8 right-0 ml-auto bg-black dark:bg-white rounded-full flex items-center justify-center"
@@ -209,7 +202,7 @@ export const Card = ({ card, index, layout = false }) => {
                 {card.title}
                 <br></br>
                 <Link
-                  to="/walltales/gallery"
+                  to="/walltales/products"
                   className="text-teal-600 hover:text-teal-900 font-semibold text-lg text-center transition duration-200 mx-auto py-2"
                 >
                   View our Products &rarr;
@@ -232,19 +225,12 @@ export const Card = ({ card, index, layout = false }) => {
         onClick={handleOpen}
         className="rounded-3xl bg-gray-100 dark:bg-neutral-900 h-80 w-56 md:h-[30rem] md:w-80 overflow-hidden flex flex-col items-start justify-start relative z-10"
       >
-
         <div className="relative z-40 p-8">
           <motion.p
             layoutId={layout ? `category-${card.category}` : undefined}
             className="text-white text-sm md:text-base font-medium font-sans text-left"
           >
             {card.category}
-          </motion.p>
-          <motion.p
-            layoutId={layout ? `title-${card.title}` : undefined}
-            className="text-white text-xl md:text-3xl font-semibold max-w-xs text-left [text-wrap:balance] font-sans mt-2"
-          >
-            {/* {card.title} */}
           </motion.p>
         </div>
         <img
