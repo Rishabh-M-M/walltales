@@ -34,7 +34,7 @@ export function AppleCardsCarouselDemo() {
       content: <p>Experience the transformative power of Walltales Peel and Stick Tiles, the effortless solution for enhancing your home's aesthetic. Our innovative tiles are designed for effortless application, requiring no messy grout or complicated installation. Simply peel and stick to instantly revitalize any surface, from kitchen backsplashes and feature walls to furniture accents and decorative elements.
         Explore a captivating array of colors, patterns, and textures, catering to every design preference and style.Whether you yearn for the timeless elegance of marble, the rustic charm of brick, or the contemporary allure of metallics, Walltales offers an extensive palette to suit your unique vision.
         Our high - quality peel - and - stick tiles are crafted with durability and longevity in mind.They are resistant to moisture, heat, and everyday wear and tear, ensuring long - lasting beauty and functionality.Moreover, they are easily removable and repositionable, allowing for effortless design adjustments and hassle - free maintenance.
-        With Walltales, unleash your creativity and transform your home into a reflection of your personal style.Discover the joy of effortless elegance and elevate your living spaces with our stunning peel - and - stick tiles.</p>,
+        With Walltales, unleash your creativity and transform your home into a reflection of your personal style. Discover the joy of effortless elegance and elevate your living spaces with our stunning peel - and - stick tiles.</p>,
     },
     {
       title: "Wall Tile Stickers",
@@ -64,12 +64,18 @@ export function AppleCardsCarouselDemo() {
     {
       title: "Decore Plate",
       src: DP,
-      content: <p>Explore this.</p>,
+      content: <p>Reimagine your decor with Walltales innovative Decore Plates, a fusion of style and functionality. These self-adhesive plates, crafted from durable foamboard and topped with a glossy vinyl doming finish, are the perfect choice to add a contemporary flair to any space.
+        Featuring a wide array of shapes, sizes, and designs, Walltales Decore Plates cater to every design aesthetic, whether you prefer minimalist elegance or bold statement pieces. Each plate is meticulously crafted to enhance the beauty of your interiors, serving as a centerpiece or a complement to your overall decor.
+        Our Decore Plates are lightweight, easy to install, and require no additional tools or adhesives. Simply peel off the backing and place them on your desired surface to instantly transform your space. The highquality vinyl doming provides a glossy, three-dimensional effect, adding depth and vibrancy to your walls.
+        Whether you're revamping your living room, sprucing up your bedroom, or adding a touch of creativity to your office, Walltales Decore Plates offer a hassle-free solution to personalize your space with unparalleled style. Discover the art of effortless decor with Walltales Decore Plates and redefine your interiors today.</p>,
     },
     {
       title: "Wallpapers",
       src: WP,
-      content: <p>Cool Product here.</p>,
+      content: <p>Transform your spaces with Walltales' premium wallpaper collection, designed to elevate your interior decor effortlessly. Our wallpapers blend aesthetics and durability, offering a perfect solution to create stunning feature walls or refresh entire rooms with style.
+        Available in an extensive range of patterns, colors, and textures, our collection caters to diverse tastes and design preferences. From timeless floral prints and classic stripes to modern geometrics and elegant metallics, you can find the ideal wallpaper to complement your unique style and vision.
+        Crafted from high-quality materials, Walltales wallpapers are not just visually striking but also designed for longevity. They are easy to clean, fade resistant, and crafted to withstand the rigors of everyday life. With user-friendly installation techniques, such as peel and stick options, you can effortlessly bring your design ideas to life without professional assistance.
+        Explore the limitless possibilities of Walltales wallpapers and create spaces that exude charm and sophistication. Let your walls tell a story of elegance and creativity with our exceptional range.</p>,
     },
   ];
 

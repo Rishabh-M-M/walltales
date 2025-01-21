@@ -186,7 +186,7 @@ const MyCarousel = () => {
                 {/* Slider Wrapper (centered). Added overflow-hidden to clip any leftover */}
                 <div className="relative w-[80vw] mx-auto overflow-hidden">
                     {/* Previous Button */}
-                    <div className="prev absolute top-1/2 -translate-y-1/2 left-2 text-[30px] cursor-pointer font-semibold z-10">
+                    <div className="prev absolute lg:top-[35vh]  md:top-[24vh] top-1/2 -translate-y-1/2 lg:text-[30px] lg:left-2 text-[24px] cursor-pointer font-semibold z-10">
                         <AiOutlineLeft />
                     </div>
 
@@ -235,7 +235,7 @@ const MyCarousel = () => {
                     </ul>
 
                     {/* Next Button */}
-                    <div className="next absolute top-1/2 -translate-y-1/2 right-2 text-[30px] cursor-pointer font-semibold z-10">
+                    <div className="next absolute lg:top-[35vh]  md:top-[24vh] top-1/2 -translate-y-1/2 lg:text-[30px] right-2 lg:right-4 text-[24px] cursor-pointer font-semibold z-10">
                         <AiOutlineRight />
                     </div>
                 </div>

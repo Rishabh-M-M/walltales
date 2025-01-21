@@ -5,7 +5,7 @@ import WhyChooseUs from "../components/home/Choose";
 import { InfiniteMovingCardsDemo } from "../components/home/Reviews";
 import { AppleCardsCarouselDemo } from "../components/home/Categories";
 import MySlider from "../components/home/VideoCarousel";
-// import EmotionsSlider from "../components/home/GalleryPreview";
+import My3DCarousel from "../components/home/3DCarousel";
 
 function Home() {
   const [count, setCount] = useState(0);
@@ -14,7 +14,7 @@ function Home() {
     <>
       <main className="mt-0 pt-8">
         <Hero />
-        {/* <EmotionsSlider /> */}
+        <My3DCarousel />
         <WhyChooseUs />
         <AppleCardsCarouselDemo />
         {/* <FocusCardsDemo /> */}

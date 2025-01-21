@@ -142,7 +142,7 @@ const Navbar = () => {
         <Link to={"/walltales/home"}><img
           src={logo}
           alt="Walltales Logo"
-          className={`transition-all duration-[1000ms] ${isTransitioning ? "h-12 md:h-24" : "h-10"
+          className={`transition-all duration-[1000ms] hover:duration-[0ms] hover:opacity-80 ${isTransitioning ? "h-12 md:h-24" : "h-10"
             }`}
         /></Link>
       </div>

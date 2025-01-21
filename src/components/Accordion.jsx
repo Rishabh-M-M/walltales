@@ -31,12 +31,12 @@ const FAQAccordion = () => {
     ];
 
     return (
-        <div className="wrapper mx-auto w-3/5 pt-36">
+        <div className="wrapper mx-auto w-3/5 pt-36" >
             <h1 className="text-5xl font-bold mb-8 text-center text-gray-700">FAQs</h1>
             {faqs.map((faq, index) => (
                 <div
                     key={index}
-                    className="container bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-shadow duration-300 mb-4 border border-teal-900"
+                    className="container bg-white rounded-2xl shadow-lg hover:ml-2 hover:shadow-2xl transition-shadow duration-300 mb-4 border border-teal-900"
                 >
                     <div
                         className={`question font-bold rounded-2xl text-lg p-5 flex justify-between items-center cursor-pointer text-white bg-teal-600 ${openIndex === index ? 'active' : ''
