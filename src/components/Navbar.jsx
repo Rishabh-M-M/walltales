@@ -67,8 +67,8 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed w-full z-50 transition-all duration-[1500ms] ${isScrolled ? "h-20" : "h-24"
-        } ${isTransitioning ? "h-screen bg-white" : "h-16 bg-white"} flex items-center px-6 shadow-md dark:bg-gray-900`}
+      className={`fixed w-full z-50 transition-all duration-[1500ms] border-b-2 ${isScrolled ? "h-20 bg-white" : "h-20 bg-transparent"
+        } ${isTransitioning ? "h-screen bg-white" : "bg-white h-16"} flex items-center px-6 shadow-md dark:bg-gray-900`}
     >
       {isMenuOpen && (
         <div className="fixed inset-0 bg-black opacity-50 backdrop-blur-lg z-30" />
@@ -77,7 +77,7 @@ const Navbar = () => {
       {!isTransitioning && !hamburgerDelay && (
         <button
           onClick={() => setIsMenuOpen((prev) => !prev)}
-          className="inline-flex items-center p-2 w-10 h-10 text-sm text-gray-500 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+          className="inline-flex items-center p-2 w-10 h-10 text-sm bg-white text-gray-500 rounded-xl hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
         >
           <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M4 18H10" stroke="#000000" strokeWidth="2" strokeLinecap="round"></path> <path d="M4 12L16 12" stroke="#000000" strokeWidth="2" strokeLinecap="round"></path> <path d="M4 6L20 6" stroke="#000000" strokeWidth="2" strokeLinecap="round"></path> </g></svg>
 

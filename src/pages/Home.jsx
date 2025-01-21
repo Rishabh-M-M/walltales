@@ -12,7 +12,7 @@ function Home() {
 
   return (
     <>
-      <main className="mt-0 pt-8">
+      <main className="mt-0 pt-7">
         <Hero />
         <My3DCarousel />
         <WhyChooseUs />
