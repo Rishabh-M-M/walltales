@@ -39,22 +39,28 @@ const My3DCarousel = () => {
     ];
 
     return (
-        <div style={{ width: '80%', height: '80vh', margin: '0 7% 0 13%', position: 'relative' }}>
-            <button onClick={() => setGoToSlide((goToSlide - 1 + slides.length) % slides.length)} style={{ position: 'absolute', left: '5%', top: '50%', transform: 'translateY(-50%)', zIndex: 2, fontSize: '2rem', cursor: 'pointer', background: 'none', border: 'none' }}>◀</button>
-            <Carousel
-                slides={slides}
-                goToSlide={goToSlide}
-                offsetRadius={2}
-                showNavigation={false}
-                animationConfig={config.slow}
-            />
-            <button onClick={() => setGoToSlide((goToSlide + 1) % slides.length)} style={{ position: 'absolute', right: '5%', top: '50%', transform: 'translateY(-50%)', zIndex: 2, fontSize: '2rem', cursor: 'pointer', background: 'none', border: 'none' }}>▶</button>
-            <div style={{ position: 'absolute', bottom: '4%', width: '100%', display: 'flex', justifyContent: 'center', gap: '10px' }}>
-                {slides.map((_, i) => (
-                    <div key={i} onClick={() => setGoToSlide(i)} style={{ height: '10px', borderRadius: goToSlide === i ? '35%' : '50%', background: goToSlide === i ? '#333' : '#ccc', width: goToSlide === i ? '22px' : '10px', cursor: 'pointer' }}></div>
-                ))}
+        <>
+            <h2 className="text-xl m-auto px-2 md:text-4xl lg:text-4xl font-bold text-neutral-900 dark:text-white max-w-4xl text-center pt-24">
+                Video Gallery
+            </h2>
+
+            <div style={{ width: '80%', height: '80vh', margin: '0 7% 0 13%', position: 'relative' }}>
+                <button onClick={() => setGoToSlide((goToSlide - 1 + slides.length) % slides.length)} style={{ position: 'absolute', left: '5%', top: '50%', transform: 'translateY(-50%)', zIndex: 2, fontSize: '2rem', cursor: 'pointer', background: 'none', border: 'none' }}>◀</button>
+                <Carousel
+                    slides={slides}
+                    goToSlide={goToSlide}
+                    offsetRadius={2}
+                    showNavigation={false}
+                    animationConfig={config.slow}
+                />
+                <button onClick={() => setGoToSlide((goToSlide + 1) % slides.length)} style={{ position: 'absolute', right: '5%', top: '50%', transform: 'translateY(-50%)', zIndex: 2, fontSize: '2rem', cursor: 'pointer', background: 'none', border: 'none' }}>▶</button>
+                <div style={{ position: 'absolute', bottom: '4%', width: '100%', display: 'flex', justifyContent: 'center', gap: '10px' }}>
+                    {slides.map((_, i) => (
+                        <div key={i} onClick={() => setGoToSlide(i)} style={{ height: '10px', borderRadius: goToSlide === i ? '35%' : '50%', background: goToSlide === i ? '#333' : '#ccc', width: goToSlide === i ? '22px' : '10px', cursor: 'pointer' }}></div>
+                    ))}
+                </div>
             </div>
-        </div>
+        </>
     );
 };
 
