@@ -20,26 +20,26 @@ const My3DCarousel = () => {
     useEffect(() => {
         const interval = setInterval(() => {
             setGoToSlide((prev) => (prev + 1) % slides.length);
-        }, 3000);
+        }, 5000);
         return () => clearInterval(interval);
     }, []);
 
     const slides = [
-        { key: '1', content: <img src={img2} alt="Gallery-02" style={{ width: '100%', height: '80vh', objectFit: 'cover' }} /> },
-        { key: '2', content: <img src={img3} alt="Gallery-03" style={{ width: '100%', height: '80vh', objectFit: 'cover' }} /> },
-        { key: '3', content: <img src={img9} alt="Gallery-09" style={{ width: '100%', height: '80vh', objectFit: 'cover' }} /> },
-        { key: '4', content: <img src={img12} alt="Gallery-12" style={{ width: '100%', height: '80vh', objectFit: 'cover' }} /> },
-        { key: '5', content: <img src={img14} alt="Gallery-14" style={{ width: '100%', height: '80vh', objectFit: 'cover' }} /> },
-        { key: '6', content: <img src={img19} alt="Gallery-19" style={{ width: '100%', height: '80vh', objectFit: 'cover' }} /> },
-        { key: '7', content: <img src={img30} alt="Gallery-30" style={{ width: '100%', height: '80vh', objectFit: 'cover' }} /> },
-        { key: '8', content: <img src={img31} alt="Gallery-31" style={{ width: '100%', height: '80vh', objectFit: 'cover' }} /> },
-        { key: '9', content: <img src={img43} alt="Gallery-43" style={{ width: '100%', height: '80vh', objectFit: 'cover' }} /> },
-        { key: '10', content: <img src={img44} alt="Gallery-44" style={{ width: '100%', height: '80vh', objectFit: 'cover' }} /> },
-        { key: '11', content: <img src={img47} alt="Gallery-47" style={{ width: '100%', height: '80vh', objectFit: 'cover' }} /> },
+        { key: '1', content: <img src={img2} alt="Gallery-02" style={{ width: '100%', height: '65vh', objectFit: 'cover' }} /> },
+        { key: '2', content: <img src={img3} alt="Gallery-03" style={{ width: '100%', height: '65vh', objectFit: 'cover' }} /> },
+        { key: '3', content: <img src={img9} alt="Gallery-09" style={{ width: '100%', height: '65vh', objectFit: 'cover' }} /> },
+        { key: '4', content: <img src={img12} alt="Gallery-12" style={{ width: '100%', height: '65vh', objectFit: 'cover' }} /> },
+        { key: '5', content: <img src={img14} alt="Gallery-14" style={{ width: '100%', height: '65vh', objectFit: 'cover' }} /> },
+        { key: '6', content: <img src={img19} alt="Gallery-19" style={{ width: '100%', height: '65vh', objectFit: 'cover' }} /> },
+        { key: '7', content: <img src={img30} alt="Gallery-30" style={{ width: '100%', height: '60vh', objectFit: 'cover' }} /> },
+        { key: '8', content: <img src={img31} alt="Gallery-31" style={{ width: '100%', height: '60vh', objectFit: 'cover' }} /> },
+        { key: '9', content: <img src={img43} alt="Gallery-43" style={{ width: '100%', height: '65vh', objectFit: 'cover' }} /> },
+        { key: '10', content: <img src={img44} alt="Gallery-44" style={{ width: '100%', height: '65vh', objectFit: 'cover' }} /> },
+        { key: '11', content: <img src={img47} alt="Gallery-47" style={{ width: '100%', height: '65vh', objectFit: 'cover' }} /> },
     ];
 
     return (
-        <div style={{ width: '80%', height: '100vh', margin: '0 7% 0 13%', position: 'relative' }}>
+        <div style={{ width: '80%', height: '80vh', margin: '0 7% 0 13%', position: 'relative' }}>
             <button onClick={() => setGoToSlide((goToSlide - 1 + slides.length) % slides.length)} style={{ position: 'absolute', left: '5%', top: '50%', transform: 'translateY(-50%)', zIndex: 2, fontSize: '2rem', cursor: 'pointer', background: 'none', border: 'none' }}>◀</button>
             <Carousel
                 slides={slides}
@@ -49,9 +49,9 @@ const My3DCarousel = () => {
                 animationConfig={config.slow}
             />
             <button onClick={() => setGoToSlide((goToSlide + 1) % slides.length)} style={{ position: 'absolute', right: '5%', top: '50%', transform: 'translateY(-50%)', zIndex: 2, fontSize: '2rem', cursor: 'pointer', background: 'none', border: 'none' }}>▶</button>
-            <div style={{ position: 'absolute', bottom: '5%', width: '100%', display: 'flex', justifyContent: 'center', gap: '10px' }}>
+            <div style={{ position: 'absolute', bottom: '4%', width: '100%', display: 'flex', justifyContent: 'center', gap: '10px' }}>
                 {slides.map((_, i) => (
-                    <div key={i} onClick={() => setGoToSlide(i)} style={{ width: '15px', height: '15px', borderRadius: '50%', background: goToSlide === i ? '#333' : '#ccc', cursor: 'pointer' }}></div>
+                    <div key={i} onClick={() => setGoToSlide(i)} style={{ height: '10px', borderRadius: goToSlide === i ? '35%' : '50%', background: goToSlide === i ? '#333' : '#ccc', width: goToSlide === i ? '22px' : '10px', cursor: 'pointer' }}></div>
                 ))}
             </div>
         </div>
