@@ -14,11 +14,11 @@ function Home() {
     <>
       <main className="mt-0 pt-7">
         <Hero />
-        <My3DCarousel />
         <WhyChooseUs />
         <AppleCardsCarouselDemo />
         {/* <FocusCardsDemo /> */}
         <InfiniteMovingCardsDemo />
+        <My3DCarousel />
         <MySlider />
       </main>
     </>

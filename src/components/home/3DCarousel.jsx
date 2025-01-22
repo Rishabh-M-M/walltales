@@ -41,7 +41,7 @@ const My3DCarousel = () => {
     return (
         <>
             <h2 className="text-xl m-auto px-2 md:text-4xl lg:text-4xl font-bold text-neutral-900 dark:text-white max-w-4xl text-center pt-24">
-                Video Gallery
+                Gallery
             </h2>
 
             <div style={{ width: '80%', height: '80vh', margin: '0 7% 0 13%', position: 'relative' }}>

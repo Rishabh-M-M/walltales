@@ -67,8 +67,10 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed w-full z-50 transition-all duration-[1500ms] border-b-2 ${isScrolled ? "h-20 bg-white" : "h-20 bg-transparent"
-        } ${isTransitioning ? "h-screen bg-white" : "bg-white h-16"} flex items-center px-6 shadow-md dark:bg-gray-900`}
+      className={`fixed w-full z-50 transition-all duration-[1500ms] border-b-2 ${location.pathname === "/walltales/home" && !isScrolled
+        ? "h-20 bg-transparent"
+        : "h-20 bg-white"
+        }  ${isTransitioning ? "h-screen bg-white" : "h-16"} flex items-center px-6 shadow-md dark:bg-gray-900`}
     >
       {isMenuOpen && (
         <div className="fixed inset-0 bg-black opacity-50 backdrop-blur-lg z-30" />
@@ -156,8 +158,8 @@ const Navbar = () => {
             className="relative inline-flex h-12 overflow-hidden rounded-full p-[3px] focus:outline-none focus:ring-2 focus:ring-teal-400 focus:ring-offset-2 focus:ring-offset-teal-50"
           >
             <span className="absolute inset-[-1000%] animate-[spin_5s_linear_infinite] hover:animate-none bg-[conic-gradient(from_90deg_at_50%_50%,#A0F4F1_0%,#0ca899_50%,#A0F4F1_100%)]" />
-            <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-white px-8 py-1 font-medium text-teal-600 backdrop-blur-3xl hover:text-teal-800">
-              <FaPhone className="mr-4 text-md -rotate-12" />
+            <span className="inline-flex h-full uppercase w-full cursor-pointer items-center justify-center rounded-full bg-white px-8 py-1 font-medium text-teal-600 backdrop-blur-3xl hover:text-teal-800">
+              <FaPhone className="mr-4 text-md -rotate-12 " />
               Get a Call
             </span>
           </Link>
