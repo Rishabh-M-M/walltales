@@ -67,8 +67,8 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed w-full z-50 transition-all duration-[1500ms] border-b-2 ${location.pathname === "/walltales/home" && !isScrolled
-        ? "h-20 bg-transparent"
+      className={`fixed w-full z-50 transition-all duration-[1500ms] border-b-2 ${location.pathname === ("/walltales/home" || "/") && !isScrolled
+        ? "h-20 bg-[rgba(255,255,255,0.75)]"
         : "h-20 bg-white"
         }  ${isTransitioning ? "h-screen bg-white" : "h-16"} flex items-center px-6 shadow-md dark:bg-gray-900`}
     >

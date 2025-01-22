@@ -54,11 +54,11 @@ const My3DCarousel = () => {
                     animationConfig={config.slow}
                 />
                 <button onClick={() => setGoToSlide((goToSlide + 1) % slides.length)} style={{ position: 'absolute', right: '5%', top: '50%', transform: 'translateY(-50%)', zIndex: 2, fontSize: '2rem', cursor: 'pointer', background: 'none', border: 'none' }}>▶</button>
-                <div style={{ position: 'absolute', bottom: '4%', width: '100%', display: 'flex', justifyContent: 'center', gap: '10px' }}>
+                {/* <div style={{ margin: "2px 0", pposition: 'absolute', bottom: '4%', width: '100%', display: 'flex', justifyContent: 'center', gap: '15px' }}>
                     {slides.map((_, i) => (
-                        <div key={i} onClick={() => setGoToSlide(i)} style={{ height: '10px', borderRadius: goToSlide === i ? '35%' : '50%', background: goToSlide === i ? '#333' : '#ccc', width: goToSlide === i ? '22px' : '10px', cursor: 'pointer' }}></div>
+                        <div key={i} onClick={() => setGoToSlide(i)} style={{ height: '10px', background: goToSlide === i ? '#333' : '#ccc', width: '10px', cursor: 'pointer' }}></div>
                     ))}
-                </div>
+                </div> */}
             </div>
         </>
     );

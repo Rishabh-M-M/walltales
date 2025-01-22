@@ -12,7 +12,7 @@ function Home() {
 
   return (
     <>
-      <main className="mt-0 pt-7">
+      <main className="mt-0">
         <Hero />
         <WhyChooseUs />
         <AppleCardsCarouselDemo />
