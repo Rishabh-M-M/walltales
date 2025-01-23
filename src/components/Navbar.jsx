@@ -116,7 +116,7 @@ const Navbar = () => {
                     onClick={() => toggleDropdown(item.name)}
                     className="flex items-center justify-between py-3 px-4 text-lg font-semibold text-gray-700 hover:text-teal-700 w-11/12"
                   >
-                    <span className="flex items-center space-x-8">
+                    <span className="flex items-center space-x-5">
                       <span className="text-3xl">{item.icon}</span>
                       <span>{item.name}</span>
                     </span>
@@ -143,7 +143,7 @@ const Navbar = () => {
                       <li key={subItem.name}>
                         <Link
                           to={subItem.path}
-                          className="block text-gray-600 hover:text-teal-600 text-sm pl-4"
+                          className="block text-gray-600 hover:text-teal-600 text-sm pl-3 hover:pl-5"
                           onClick={(e) => {
                             e.preventDefault(); // Prevent immediate navigation
                             setIsTransitioning(true);
@@ -165,10 +165,10 @@ const Navbar = () => {
                   onClick={() => handleLinkClick(item.path)}
                   className={`flex items-center py-3 px-4 text-lg font-semibold ${location.pathname === item.path
                     ? "text-teal-700"
-                    : "text-gray-700 hover:text-teal-700"
+                    : "text-gray-700 hover:px-6 hover:text-teal-700"
                     }`}
                 >
-                  <span className="mr-8 text-3xl">{item.icon}</span>
+                  <span className="mr-5 text-3xl">{item.icon}</span>
                   <span>{item.name}</span>
                 </button>
               )}
