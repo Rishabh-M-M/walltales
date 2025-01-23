@@ -39,7 +39,13 @@ function App() {
           <Route path="walltales/home" element={<Home />} />
           <Route path="walltales/" element={<Home />} />
           <Route path="walltales/about" element={<About />} />
-          <Route path="walltales/products" element={<Products />} />
+          <Route path="walltales/products/accent-wall" element={<Products />} />
+          <Route path="walltales/products/peel-and-stick-tiles" element={<Products />} />
+          <Route path="walltales/products/peel-and-stick-floor-tiles" element={<Products />} />
+          <Route path="walltales/products/wall-tile-stickers" element={<Products />} />
+          <Route path="walltales/products/mosaic-tiles" element={<Products />} />
+          <Route path="walltales/products/wallpapers" element={<Products />} />
+          <Route path="walltales/products/decore-plate" element={<Products />} />
           <Route path="walltales/gallery" element={<Gallery />} />
           <Route path="walltales/blog" element={<Blog />} />
           <Route path="walltales/testimonials" element={<Testimonials />} />

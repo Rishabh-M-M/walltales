@@ -2,11 +2,24 @@ import React, { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import logo from "@/assets/logo.png";
 import { FaPhone, FaHome, FaInfoCircle, FaBoxOpen, FaImage } from "react-icons/fa";
+import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 
 const MENU_ITEMS = [
   { name: "Home", path: "/walltales/home", icon: <FaHome /> },
   { name: "About", path: "/walltales/about", icon: <FaInfoCircle /> },
-  { name: "Products", path: "/walltales/products", icon: <FaBoxOpen /> },
+  {
+    name: "Products",
+    icon: <FaBoxOpen />,
+    subcategories: [
+      { name: "Peel & Stick Tiles", path: "/walltales/products/peel-and-stick-tiles" },
+      { name: "Wall Tile Stickers", path: "/walltales/products/wall-tile-stickers" },
+      { name: "Peel & Stick Floor Tiles", path: "/walltales/products/peel-and-stick-floor-tiles" },
+      { name: "Mosaic Tiles", path: "/walltales/products/mosaic-tiles" },
+      { name: "Accent Wall", path: "/walltales/products/accent-wall" },
+      { name: "Decore Plate", path: "/walltales/products/decore-plate" },
+      { name: "Wallpapers", path: "/walltales/products/wallpapers" },
+    ],
+  },
   { name: "Gallery", path: "/walltales/gallery", icon: <FaImage /> },
 ];
 
@@ -14,6 +27,7 @@ const Navbar = () => {
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [reappearingDelay, setReappearingDelay] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState(null);
   const [isScrolled, setIsScrolled] = useState(false);
   const [hamburgerDelay, setHamburgerDelay] = useState(false);
   const navigate = useNavigate();
@@ -30,6 +44,9 @@ const Navbar = () => {
     }, 1500);
   };
 
+  const toggleDropdown = (itemName) => {
+    setActiveDropdown(activeDropdown === itemName ? null : itemName);
+  };
   const handleOutsideClick = (e) => {
     if (!e.target.closest("nav")) {
       setIsMenuOpen(false);
@@ -92,19 +109,72 @@ const Navbar = () => {
       >
         <ul className="flex flex-col space-y-8 p-6 mt-12 items-center md:items-baseline">
           {MENU_ITEMS.map((item) => (
-            <li key={item.name} className="flex items-center space-x-4">
-              <button
-                onClick={() => handleLinkClick(item.path)}
-                className={`flex items-center py-3 px-4 text-lg text-center font-semibold rounded md:text-left uppercase ${location.pathname === item.path
-                  ? "text-teal-700 tracking-wide"
-                  : "text-gray-700 hover:text-teal-700 hover:tracking-widest duration-500"
-                  }`}
-              >
-                <span className="mr-3 text-2xl">{item.icon}</span>
-                <span>{item.name}</span>
-              </button>
+            <li key={item.name} className="flex flex-col w-full">
+              {item.subcategories ? (
+                <>
+                  <button
+                    onClick={() => toggleDropdown(item.name)}
+                    className="flex items-center justify-between py-3 px-4 text-lg font-semibold text-gray-700 hover:text-teal-700 w-11/12"
+                  >
+                    <span className="flex items-center space-x-8">
+                      <span className="text-3xl">{item.icon}</span>
+                      <span>{item.name}</span>
+                    </span>
+                    <span
+                      className="transition-transform duration-1000 ease-in-out cursor-pointer"
+                      onClick={(e) => {
+                        e.stopPropagation();  // Prevent closing the menu
+                        toggleDropdown(item.name);
+                      }}
+                    >
+                      {activeDropdown === item.name ? (
+                        <FaChevronUp className="text-lg" />
+                      ) : (
+                        <FaChevronDown className="text-lg" />
+                      )}
+                    </span>
+                  </button>
+
+                  <ul
+                    className={`ml-6 mt-2 space-y-3 overflow-hidden transition-all duration-1000 ease-in-out ${activeDropdown === item.name ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+                      }`}
+                  >
+                    {item.subcategories.map((subItem) => (
+                      <li key={subItem.name}>
+                        <Link
+                          to={subItem.path}
+                          className="block text-gray-600 hover:text-teal-600 text-sm pl-4"
+                          onClick={(e) => {
+                            e.preventDefault(); // Prevent immediate navigation
+                            setIsTransitioning(true);
+                            setIsMenuOpen(false);
+                            setHamburgerDelay(true);
+                            setTimeout(() => {
+                              navigate(subItem.path);
+                            }, 1500);
+                          }}
+                        >
+                          {subItem.name}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </>
+              ) : (
+                <button
+                  onClick={() => handleLinkClick(item.path)}
+                  className={`flex items-center py-3 px-4 text-lg font-semibold ${location.pathname === item.path
+                    ? "text-teal-700"
+                    : "text-gray-700 hover:text-teal-700"
+                    }`}
+                >
+                  <span className="mr-8 text-3xl">{item.icon}</span>
+                  <span>{item.name}</span>
+                </button>
+              )}
             </li>
           ))}
+
           {/* "Get a Call" button only visible on mobile */}
           <li className="block lg:hidden">
             <Link
@@ -119,6 +189,7 @@ const Navbar = () => {
             </Link>
           </li>
         </ul>
+
         <button
           onClick={() => setIsMenuOpen(false)}
           className="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
