@@ -8,7 +8,6 @@ import "./App.css";
 // Pages
 import Home from "./pages/Home";
 import About from "./pages/About";
-import Products from "./pages/Products";
 import Gallery from "./pages/Gallery";
 import Blog from "./pages/Blog";
 import Testimonials from "./pages/Testimonials";
