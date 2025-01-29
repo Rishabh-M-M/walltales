@@ -133,7 +133,7 @@ const AccentWall = () => {
             </div>
 
             {/* Main container with subtle gradient background */}
-            <div className="bg-gradient-to-b from-zinc-50 to-white px-4 text-center relative z-30 pb-16">
+            <div className="bg-gradient-to-b from-zinc-50 to-white px-4 text-center relative z-30 pb-16 ">
                 {/* Breadcrumb / Navigation */}
                 <nav className="my-8 text-gray-500 text-lg md:text-xl">
                     <a href="/" className="hover:underline">
@@ -143,7 +143,7 @@ const AccentWall = () => {
                 </nav>
 
                 {/* Responsive grid of products (4→3→2→1) */}
-                <div className="mx-auto max-w-7xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                <div className="mx-auto max-w-7xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {products.map((product, index) => (
                         <div
                             key={index}
@@ -152,6 +152,7 @@ const AccentWall = () => {
                 shadow-md transition-all duration-300 
                 cursor-pointer hover:shadow-2xl 
                 hover:-translate-y-1 hover:scale-[1.02]
+                hover:ring-4 hover:ring-teal-100
               "
                             onClick={() => setSelectedProduct(product)}
                         >
