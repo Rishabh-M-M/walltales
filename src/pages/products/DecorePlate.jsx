@@ -152,6 +152,7 @@ const DecorePlate = () => {
                 shadow-md transition-all duration-300 
                 cursor-pointer hover:shadow-2xl 
                 hover:-translate-y-1 hover:scale-[1.02]
+                hover:ring-4 hover:ring-teal-100
               "
                             onClick={() => setSelectedProduct(product)}
                         >
