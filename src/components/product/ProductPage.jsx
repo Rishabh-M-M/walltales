@@ -1,36 +1,8 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-// Images for categories
-import peelAndStickTilesImage from "@/assets/Products/Peel And Stick Tiles/PASTbanner.jpeg";
-import wallTileStickersImage from "@/assets/Products/Wall Tile Stickers/WTSbanner.jpeg";
-import floorTileStickersImage from "@/assets/Products/Floor Tile Stickers/FTSbanner.jpeg";
-import mosaicTilesImage from "@/assets/Products/Mosaic Tiles/MTbanner.jpeg";
-import accentWallImage from "@/assets/Products/Accent Wall/AWbanner.jpeg";
-import decorePlateImage from "@/assets/Products/Decore Plate/DPbanner.jpeg";
-import wallpapersImage from "@/assets/Products/Wallpapers/WPbanner.jpeg";
-
-// Category Components
-import PeelAndStickTiles from "./categories/PeelAndStickTiles";
-import WallTileStickers from "./categories/WallTileStickers";
-import PeelAndStickFloorTiles from "./categories/PeelAndStickFloorTiles";
-import MosaicTiles from "./categories/MosaicTiles";
-import AccentWall from "./categories/AccentWall";
-import DecorePlate from "./categories/DecorPlate";
-import Wallpapers from "./categories/Wallpapers";
-
-const categories = [
-  { name: "Accent Wall", image: accentWallImage, component: AccentWall },
-  { name: "Peel and Stick Tiles", image: peelAndStickTilesImage, component: PeelAndStickTiles },
-  { name: "Wall Tile Stickers", image: wallTileStickersImage, component: WallTileStickers },
-  { name: "Peel and Stick Floor Tiles", image: floorTileStickersImage, component: PeelAndStickFloorTiles },
-  { name: "Mosaic Tiles", image: mosaicTilesImage, component: MosaicTiles },
-  { name: "Decore Plate", image: decorePlateImage, component: DecorePlate },
-  { name: "Wallpapers", image: wallpapersImage, component: Wallpapers },
-];
-
-const ProductPage = () => {
-  const [selectedCategory, setSelectedCategory] = useState("Accent Wall");
+const ProductPage = ({ categories, initialCategory }) => {
+  const [selectedCategory, setSelectedCategory] = useState(initialCategory || categories[0].name);
 
   const handleTabClick = (categoryName) => {
     setSelectedCategory(categoryName);

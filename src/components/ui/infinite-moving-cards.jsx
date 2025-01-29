@@ -1,54 +1,60 @@
 import { cn } from "@/lib/utils";
 import React, { useEffect, useState } from "react";
-import { AiOutlineUser } from "react-icons/ai";
-import { FaStar, FaRegStar } from "react-icons/fa";
 
 export const InfiniteMovingCards = ({
   items,
   direction = "left",
-  speed = "fast",
+  speed = "medium", // can be "fast", "medium", or "slow"
   pauseOnHover = true,
   className,
 }) => {
   const containerRef = React.useRef(null);
   const scrollerRef = React.useRef(null);
 
-  useEffect(() => {
-    addAnimation();
-  }, []);
-
   const [start, setStart] = useState(false);
 
-  const addAnimation = () => {
-    if (containerRef.current && scrollerRef.current) {
-      const scrollerContent = Array.from(scrollerRef.current.children);
-
-      scrollerContent.forEach((item) => {
-        const duplicatedItem = item.cloneNode(true);
-        if (scrollerRef.current) {
-          scrollerRef.current.appendChild(duplicatedItem);
-        }
-      });
-
-      getDirection();
-      getSpeed();
-      setStart(true);
+  // Map speed prop to slower durations
+  const getDuration = (speedValue) => {
+    switch (speedValue) {
+      case "fast":
+        return "400s"; // Feel free to adjust
+      case "medium":
+        return "600s";
+      case "slow":
+        return "800s";
+      default:
+        return "800s"; // Default to "medium"
     }
   };
 
-  const getDirection = () => {
+  useEffect(() => {
+    if (containerRef.current && scrollerRef.current) {
+      // Duplicate each card for continuous scroll
+      const scrollerContent = Array.from(scrollerRef.current.children);
+      scrollerContent.forEach((item) => {
+        const duplicatedItem = item.cloneNode(true);
+        scrollerRef.current.appendChild(duplicatedItem);
+      });
+
+      setAnimationDirection();
+      setAnimationSpeed();
+      setStart(true);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const setAnimationDirection = () => {
     if (containerRef.current) {
       containerRef.current.style.setProperty(
         "--animation-direction",
-        direction === "left" ? "forwards" : "reverse",
+        direction === "left" ? "forwards" : "reverse"
       );
     }
   };
 
-  const getSpeed = () => {
+  const setAnimationSpeed = () => {
     if (containerRef.current) {
-      const duration =
-        speed === "fast" ? "20s" : speed === "normal" ? "40s" : "80s";
+      const duration = getDuration(speed);
       containerRef.current.style.setProperty("--animation-duration", duration);
     }
   };
@@ -57,58 +63,54 @@ export const InfiniteMovingCards = ({
     <div
       ref={containerRef}
       className={cn(
-        "scroller relative z-20 max-w-7xl overflow-hidden [mask-image:linear-gradient(to_right,transparent,white_20%,white_80%,transparent)]",
-        className,
+        "scroller relative z-20 max-w-7xl overflow-hidden",
+        // Slight gradient to fade edges in/out
+        "[mask-image:linear-gradient(to_right,transparent,white_10%,white_90%,transparent)]",
+        className
       )}
     >
       <ul
         ref={scrollerRef}
         className={cn(
-          "flex min-w-full shrink-0 gap-4 py-4 w-max flex-nowrap",
+          "flex min-w-full shrink-0 gap-6 py-6 w-max flex-nowrap",
           start && "animate-scroll",
-          pauseOnHover && "hover:[animation-play-state:paused]",
+          pauseOnHover && "hover:[animation-play-state:paused]"
         )}
       >
         {items.map((item, idx) => (
           <li
-            className="w-[280px] max-w-full relative rounded-2xl border border-teal-700 flex-shrink-0 bg-white px-4 py-4 md:w-[350px] lg:w-[450px]"
             key={idx}
+            className="
+              relative w-[280px] md:w-[340px] lg:w-[400px] flex-shrink-0 
+              bg-white rounded-xl shadow-md border border-gray-200 
+              px-6 py-8 
+              hover:shadow-2xl hover:scale-105 transition-all duration-300
+            "
           >
-            <blockquote>
-              <div
-                aria-hidden="true"
-                className="user-select-none -z-1 pointer-events-none absolute -left-0.5 -top-0.5 h-[calc(100%_+_4px)] w-[calc(100%_+_4px)]"
-              ></div>
-              {/* Quote Section */}
-              <span className="relative z-20 text-sm leading-[1.6] text-gray-900 font-normal">
+            <div className="flex flex-col items-center text-left">
+              {/* Large centered user image */}
+              {item.image && (
+                <img
+                  src={item.image}
+                  alt={item.name}
+                  className="w-24 h-24 mb-4 object-cover rounded-full border-4 border-teal-600"
+                />
+              )}
+
+              {/* Name + Title */}
+              <h3 className="text-lg font-semibold text-gray-800 leading-tight">
+                {item.name}
+              </h3>
+              <p className="text-teal-600 text-sm">{item.title}</p>
+
+              {/* Subtle divider line */}
+              <hr className="w-1/2 my-4 border-teal-100" />
+
+              {/* Testimonial Text */}
+              <p className="text-sm leading-relaxed text-gray-600 whitespace-pre-line">
                 {item.quote}
-              </span>
-              {/* User Info */}
-              <div className="relative z-20 mt-6 flex flex-row items-center gap-3">
-                <AiOutlineUser className="text-teal-700 text-xl" />
-                <div className="flex flex-col gap-1">
-                  <span className="text-sm leading-[1.6] text-gray-700 font-semibold">
-                    {item.name}
-                  </span>
-                  <span className="text-sm leading-[1.6] text-gray-500 font-normal">
-                    {item.title}
-                  </span>
-                </div>
-              </div>
-              {/* Star Rating */}
-              <div className="relative z-20 mt-4 flex flex-row items-center space-x-1">
-                {[...Array(5)].map((_, starIdx) =>
-                  starIdx < item.rating ? (
-                    <FaStar key={starIdx} className="text-yellow-400 text-sm" />
-                  ) : (
-                    <FaRegStar
-                      key={starIdx}
-                      className="text-gray-300 text-sm"
-                    />
-                  ),
-                )}
-              </div>
-            </blockquote>
+              </p>
+            </div>
           </li>
         ))}
       </ul>

@@ -15,6 +15,13 @@ import Testimonials from "./pages/Testimonials";
 import Contact from "./pages/Contact";
 import FAQ from "./pages/FAQ";
 import Nopage from "./pages/Nopage";
+import AccentWall from "./pages/products/AccentWall";
+import DecorePlate from "./pages/products/DecorePlate";
+import MosaicTiles from "./pages/products/MosaicTiles";
+import PeelandStickFloorTiles from "./pages/products/PeelAndStickFloorTiles";
+import PeelandStickTiles from "./pages/products/PeelAndStickTiles";
+import Wallpapers from "./pages/products/Wallpapers";
+import WallTileStickers from "./pages/products/WallTileStickers";
 
 // Scroll to top on route change
 const ScrollToTop = () => {
@@ -39,13 +46,13 @@ function App() {
           <Route path="walltales/home" element={<Home />} />
           <Route path="walltales/" element={<Home />} />
           <Route path="walltales/about" element={<About />} />
-          <Route path="walltales/products/accent-wall" element={<Products />} />
-          <Route path="walltales/products/peel-and-stick-tiles" element={<Products />} />
-          <Route path="walltales/products/peel-and-stick-floor-tiles" element={<Products />} />
-          <Route path="walltales/products/wall-tile-stickers" element={<Products />} />
-          <Route path="walltales/products/mosaic-tiles" element={<Products />} />
-          <Route path="walltales/products/wallpapers" element={<Products />} />
-          <Route path="walltales/products/decore-plate" element={<Products />} />
+          <Route path="walltales/products/accent-wall" element={<AccentWall />} />
+          <Route path="walltales/products/peel-and-stick-tiles" element={<PeelandStickTiles />} />
+          <Route path="walltales/products/peel-and-stick-floor-tiles" element={<PeelandStickFloorTiles />} />
+          <Route path="walltales/products/wall-tile-stickers" element={<WallTileStickers />} />
+          <Route path="walltales/products/mosaic-tiles" element={<MosaicTiles />} />
+          <Route path="walltales/products/wallpapers" element={<Wallpapers />} />
+          <Route path="walltales/products/decore-plate" element={<DecorePlate />} />
           <Route path="walltales/gallery" element={<Gallery />} />
           <Route path="walltales/blog" element={<Blog />} />
           <Route path="walltales/testimonials" element={<Testimonials />} />
